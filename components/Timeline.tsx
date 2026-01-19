@@ -28,8 +28,8 @@ const timelineData: TimelineItem[] = [
   {
     id: 2,
     date: "2024.03",
-    title: "컴퓨터공학과 졸업",
-    subtitle: "국립한밭대학교",
+    title: "국립한밭대학교 졸업",
+    subtitle: "컴퓨터공학과 전공",
     description: [],
     type: "education"
   },
