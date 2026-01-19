@@ -26,21 +26,22 @@ const projectData: Project[] = [
   {
     id: 1,
     title: "CBT Exam Platform",
-    type: "Team",
+    type: "Personal",
     period: "2025.11 - 2026.01 (8주)",
     description: "자격증 기출문제 전자문제집 서비스 플랫폼입니다.",
     details: "응시부터 채점, 랭킹, 오답노트까지 제공하는 올인원 CBT 서비스입니다. Spring Boot와 JPA로 안정적인 백엔드를 구축하고, Redis ZSet을 도입하여 실시간 랭킹 조회 성능을 최적화했습니다. Docker Compose와 AWS EC2를 활용해 배포 환경을 구성했으며, JWT RTR 방식으로 보안을 강화했습니다.",
     problemSolving: "• Redis ZSet 랭킹 도입: MySQL ORDER BY 기반의 랭킹 조회 시 발생하던 병목 현상을 해결하기 위해 Redis ZSet을 도입했습니다. 이를 통해 RDB 부하를 제거하고 응답 속도를 개선했습니다.\n• 트랜잭션 원자성 보장: 채점, 랭킹 갱신, 오답노트 생성이 동시에 이루어져야 하는 로직에서 데이터 정합성을 위해 @Transactional 범위를 조정하여 원자성을 확보했습니다.\n• Kafka 도입 검증과 보류: 이벤트 기반 아키텍처 도입을 고려하여 k6로 부하 테스트를 진행했으나, 현재 트래픽 규모에서는 운영 복잡도 대비 성능 이점이 미미하다고 판단하여 도입을 보류하는 합리적 의사결정을 내렸습니다.",
-    troubleshooting: "• JPA N+1 문제 해결: 연관 관계가 있는 엔티티 조회 시 발생한 N+1 문제를 Fetch Join과 @EntityGraph, 그리고 Batch Fetch 설정을 통해 해결하여 쿼리 수를 획기적으로 줄였습니다.\n• 대량 답안 저장 최적화: 사용자가 제출한 답안을 채점하고 저장하는 과정에서 반복적인 DB 조회를 줄이기 위해, findAllById로 한 번에 조회 후 Map으로 캐싱하여 처리 속도를 높였습니다.\n• 인증 예외 처리: 서버 재시작 후 세션이 만료된 사용자가 403 오류를 겪는 문제를 발견하고, 프론트엔드와 협업하여 401 응답 시 재로그인 흐름으로 자연스럽게 유도하도록 개선했습니다.",
+    troubleshooting: "• JPA N+1 문제 해결: 연관 관계가 있는 엔티티 조회 시 발생한 N+1 문제를 Fetch Join과 @EntityGraph, 그리고 Batch Fetch 설정을 통해 해결하여 쿼리 수를 획기적으로 줄였습니다.\n• 대량 답안 저장 최적화: 사용자가 제출한 답안을 채점하고 저장하는 과정에서 반복적인 DB 조회를 줄이기 위해, findAllById로 한 번에 조회 후 Map으로 캐싱하여 처리 속도를 높였습니다.\n• 인증 예외 처리: 서버 재시작 후 세션이 만료된 사용자가 403 오류를 겪는 문제를 발견하고, 401 응답 시 재로그인 흐름으로 자연스럽게 유도하도록 개선했습니다.",
     tags: ["Spring Boot", "JPA", "Redis", "Docker", "AWS"],
     imageColor: "bg-blue-200",
     imageUrl: "/1_arch.png", // 예시 이미지
-    githubUrl: "https://github.com/hyunul/CBT"
+    githubUrl: "https://github.com/hyunul/CBT",
+    liveUrl: "https://hyunul.shop"
   },
   {
     id: 2,
     title: "Wireless Sensor Monitoring",
-    type: "Personal",
+    type: "Team",
     period: "2024.01 - 2024.02 (4주)",
     description: "MQTT 기반의 실시간 센서 데이터 모니터링 시스템입니다.",
     details: "FastAPI와 WebSocket을 활용하여 센서 데이터를 실시간으로 시각화하는 대시보드입니다. paho-mqtt로 수집된 데이터를 비동기 큐와 Redis Pub/Sub을 통해 효율적으로 처리하며, Docker Compose로 전체 서비스를 컨테이너화했습니다.",

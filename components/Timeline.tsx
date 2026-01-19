@@ -15,8 +15,8 @@ const timelineData: TimelineItem[] = [
   {
     id: 1,
     date: "2024.06 - Present",
-    title: "Backend Engineer",
-    subtitle: "(주) 카이런소프트",
+    title: "(주) 카이런소프트",
+    subtitle: "Backend Engineer",
     description: [
       "국가슈퍼컴퓨팅센터 서비스 플랫폼 유지보수 및 기능 개선 업무를 수행하고 있습니다.",
       "MySQL 실행계획 분석을 통해 병목 쿼리를 식별하고, 인덱스 및 조인 최적화를 적용하여 주요 조회 API 응답 속도를 3초에서 1초 미만으로 단축했습니다.",
@@ -36,8 +36,8 @@ const timelineData: TimelineItem[] = [
   {
     id: 3,
     date: "2023.11 - 2024.01",
-    title: "Backend Engineer (인턴)",
-    subtitle: "(주) 온랩",
+    title: "(주) 온랩",
+    subtitle: "Backend Engineer (계약직)",
     description: [
       "Swift 앱과 연동되는 채용·이력서 관리 서비스의 백엔드 API를 설계하고 구현했습니다.",
       "Authorization 헤더 규격을 통일하고 데코레이터 패턴을 적용하여 인증 검증 로직을 표준화했습니다.",
