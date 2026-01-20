@@ -17,6 +17,7 @@ interface Project {
   tags: string[];
   imageColor: string; 
   imageUrl?: string; // 프로젝트 썸네일 이미지 경로 (public 폴더 기준)
+  detailImage?: string; // 상세 정보 최상단에 들어갈 이미지 경로
   githubUrl?: string; 
   liveUrl?: string;   
 }
@@ -27,14 +28,15 @@ const projectData: Project[] = [
     id: 1,
     title: "CBT Exam Platform",
     type: "Personal",
-    period: "2025.11 - 2026.01 (8주)",
-    description: "자격증 기출문제 전자문제집 서비스 플랫폼입니다.",
-    details: "응시부터 채점, 랭킹, 오답노트까지 제공하는 올인원 CBT 서비스입니다. Spring Boot와 JPA로 안정적인 백엔드를 구축하고, Redis ZSet을 도입하여 실시간 랭킹 조회 성능을 최적화했습니다. Docker Compose와 AWS EC2를 활용해 배포 환경을 구성했으며, JWT RTR 방식으로 보안을 강화했습니다.",
-    problemSolving: "• Redis ZSet 랭킹 도입: MySQL ORDER BY 기반의 랭킹 조회 시 발생하던 병목 현상을 해결하기 위해 Redis ZSet을 도입했습니다. 이를 통해 RDB 부하를 제거하고 응답 속도를 개선했습니다.\n• 트랜잭션 원자성 보장: 채점, 랭킹 갱신, 오답노트 생성이 동시에 이루어져야 하는 로직에서 데이터 정합성을 위해 @Transactional 범위를 조정하여 원자성을 확보했습니다.\n• Kafka 도입 검증과 보류: 이벤트 기반 아키텍처 도입을 고려하여 k6로 부하 테스트를 진행했으나, 현재 트래픽 규모에서는 운영 복잡도 대비 성능 이점이 미미하다고 판단하여 도입을 보류하는 합리적 의사결정을 내렸습니다.",
-    troubleshooting: "• JPA N+1 문제 해결: 연관 관계가 있는 엔티티 조회 시 발생한 N+1 문제를 Fetch Join과 @EntityGraph, 그리고 Batch Fetch 설정을 통해 해결하여 쿼리 수를 획기적으로 줄였습니다.\n• 대량 답안 저장 최적화: 사용자가 제출한 답안을 채점하고 저장하는 과정에서 반복적인 DB 조회를 줄이기 위해, findAllById로 한 번에 조회 후 Map으로 캐싱하여 처리 속도를 높였습니다.\n• 인증 예외 처리: 서버 재시작 후 세션이 만료된 사용자가 403 오류를 겪는 문제를 발견하고, 401 응답 시 재로그인 흐름으로 자연스럽게 유도하도록 개선했습니다.",
-    tags: ["Spring Boot", "JPA", "Redis", "Docker", "AWS"],
+    period: "2026.01 - (진행 중)",
+    description: "대규모 트래픽을 고려한 성능 최적화 중심의 온라인 시험 응시 및 채점 서비스입니다.",
+    details: "대규모 트래픽을 고려하여 성능 최적화에 집중한 온라인 CBT 서비스입니다. Spring Boot와 Next.js로 구축되었으며, 실시간 랭킹 시스템을 위해 Redis Sorted Set을 도입하여 조회 성능을 획기적으로 개선했습니다. 보안을 위해 JWT RTR 전략과 Redis Blacklist를 적용하였으며, k6 부하 테스트를 통해 아키텍처 의사결정을 검증했습니다.",
+    problemSolving: "• 실시간 랭킹 시스템 성능 최적화 (Redis Sorted Set): 초기 MySQL ORDER BY 방식의 성능 저하(500ms 이상)를 해결하기 위해 Redis ZSet을 도입했습니다. 랭킹 조회 시 ID만 빠르게 추출하고 DB에서는 Batch 조회(findAllById) 후 메모리 매핑하는 방식으로 응답 속도를 5ms 이내로 99% 단축했습니다.\n• 아키텍처 복잡도와 성능 트레이드오프 검증 (Kafka vs Redis): k6 부하 테스트(1,500 VU) 결과, Kafka 도입 시의 성능 이점(11% 개선)이 운영 복잡도 증가를 정당화하기 어렵다고 판단하여 Direct Redis 아키텍처를 유지하는 합리적 의사결정을 내렸습니다.\n• 무상태 인증의 보안 강화 (RTR & Blacklist): JWT 탈취 위험을 보완하기 위해 Refresh Token Rotation(RTR) 전략을 적용하고, 로그아웃 시 Access Token을 Redis Blacklist에 등록하여 보안성을 강화했습니다.",
+    troubleshooting: "• 대량 데이터 조회 시 N+1 문제 해결: 랭킹 리스트 조회 시 발생하던 N+1 문제를 해결하기 위해, Redis에서 ID 리스트를 먼저 추출한 후 DB에서 IN 절로 일괄 조회(findAllById)하고 Java Map으로 매핑하여 쿼리 수를 1회로 최적화했습니다.\n• 채점 로직의 유연성 확보: 객관식과 주관식(단답형) 채점 로직을 분리하여, 주관식의 경우 핵심 키워드 포함 여부를 검사하는 유연한 채점 알고리즘을 구현했습니다.\n• CORS 및 환경 구성 간소화: Next.js의 Rewrites 기능을 활용하여 API 요청을 백엔드로 프록시함으로써, 브라우저의 CORS 문제를 해결하고 클라이언트 환경 설정을 단순화했습니다.",
+    tags: ["Spring Boot", "Next.js", "Redis", "Docker", "MySQL"],
     imageColor: "bg-blue-200",
-    imageUrl: "/1_arch.png", // 예시 이미지
+    imageUrl: "/1_capture.png", 
+    detailImage: "/1_arch.png",
     githubUrl: "https://github.com/hyunul/CBT",
     liveUrl: "https://hyunul.shop"
   },
@@ -42,15 +44,15 @@ const projectData: Project[] = [
     id: 2,
     title: "Wireless Sensor Monitoring",
     type: "Team",
-    period: "2024.01 - 2024.02 (4주)",
+    period: "2025.11 - 2025.12 (4주)",
     description: "MQTT 기반의 실시간 센서 데이터 모니터링 시스템입니다.",
-    details: "FastAPI와 WebSocket을 활용하여 센서 데이터를 실시간으로 시각화하는 대시보드입니다. paho-mqtt로 수집된 데이터를 비동기 큐와 Redis Pub/Sub을 통해 효율적으로 처리하며, Docker Compose로 전체 서비스를 컨테이너화했습니다.",
-    problemSolving: "• 비동기 환경 통합: 동기 방식인 paho-mqtt와 비동기 FastAPI 루프 간의 충돌을 asyncio.Queue를 브리지로 활용하여 해결했습니다.\n• 확장성 확보: 초기 WebSocket 직접 전송 방식의 강한 결합도를 해결하기 위해 Redis Pub/Sub을 도입하여 메시지 수신과 전송을 분리하고 Scale-out이 가능한 구조로 개선했습니다.",
-    troubleshooting: "• 스레드 충돌 해결: MQTT 콜백 스레드가 메인 이벤트 루프에 접근할 때 발생하는 에러를 loop.create_task와 run_coroutine_threadsafe를 적절히 사용하여 해결했습니다.\n• DB 연결 안정성: MySQL 연결 실패 시 자동으로 SQLite 인메모리 DB로 전환되는 Failover 로직을 구현하여 개발 편의성과 서비스 안정성을 높였습니다.\n• Docker 네트워킹: 컨테이너 간 통신 문제를 Docker Compose의 User-defined Network와 서비스명 기반 호스트 설정을 통해 해결했습니다.",
+    details: "FastAPI와 WebSocket을 활용하여 센서 데이터를 실시간으로 시각화하는 대시보드입니다. Redis Pub/Sub을 도입하여 데이터 파편화 문제를 해결하고 확장성을 확보했으며, MQTT와 asyncio 간의 동시성 모델 차이를 생산자-소비자 패턴으로 극복했습니다. 또한, DB 장애 시 SQLite로 자동 전환되는 Failover 시스템을 구축하여 서비스 연속성을 보장합니다.",
+    problemSolving: "• 실시간 데이터 동기화와 확장성 확보 (Redis Pub/Sub): 초기 MQTT-WebSocket 직접 연결 시 발생할 수 있는 데이터 파편화 문제를 해결하기 위해, 수집(MQTT)과 전파(WebSocket) 로직을 분리하고 Redis Pub/Sub을 도입하여 모든 서버 인스턴스가 데이터를 공유하는 확장 가능한 구조를 설계했습니다.\n• 서비스 연속성을 위한 DB Failover 전략: 외부 DB 장애가 전체 서비스 중단으로 이어지지 않도록, 장애 감지 시 즉각적으로 내장 SQLite로 전환되는 자동 페일오버 로직을 구현하여 단일 실패 지점(SPOF)을 제거했습니다.\n• 비동기 I/O 성능 극대화: 다수의 센서 데이터를 지연 없이 처리하기 위해 FastAPI와 async/await 패턴을 전면 도입하여 높은 동시성 처리를 구현했습니다.",
+    troubleshooting: "• 비동기 환경과 동기 라이브러리 충돌 해결: paho-mqtt의 콜백(스레드)과 FastAPI(비동기) 간의 컨텍스트 충돌 문제를 해결하기 위해, asyncio.Queue를 버퍼로 두는 생산자-소비자 패턴을 적용하여 스레드 안전성을 확보했습니다.\n• 컨테이너 네트워크 연결 문제 해결: Docker 컨테이너 내부에서 localhost가 자신을 가리키는 문제를 해결하기 위해, Docker Compose의 User-defined Network를 구성하고 서비스명 기반의 DNS 조회를 적용하여 환경에 구애받지 않는 연결을 구현했습니다.",
     tags: ["FastAPI", "Redis", "MQTT", "Docker", "WebSocket"],
     imageColor: "bg-green-200",
-    imageUrl: "/globe.svg", // 예시 이미지
-    githubUrl: "https://github.com"
+    imageUrl: "/2_capture.png",
+    detailImage: "/2_arch.png",
   }
 ];
 
@@ -202,6 +204,19 @@ export default function Projects() {
             </div>
 
             <div className="p-8">
+              {/* 상세 정보 상단 이미지 추가 */}
+              {selectedProject.detailImage && (
+                <div className="mb-8 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800">
+                  <Image 
+                    src={selectedProject.detailImage} 
+                    alt={`${selectedProject.title} detail`} 
+                    width={800} 
+                    height={450}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              )}
+              
               <div className="mb-6">
                 <h3 className="text-3xl font-bold mb-2 dark:text-white break-keep">{selectedProject.title}</h3>
                 <p className="text-gray-500 dark:text-gray-400 font-medium flex items-center gap-2">
