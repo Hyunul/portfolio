@@ -55,7 +55,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border-t-4 border-transparent hover:border-blue-500"
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300 border-t-4 border-transparent hover:border-blue-500"
             >
               <div className="flex flex-col items-center mb-6">
                 {category.icon}

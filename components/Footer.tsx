@@ -7,7 +7,7 @@ export default function Footer() {
         
         <div className="mb-4 md:mb-0">
           <p className="text-sm text-gray-400">
-            © {new Date().getFullYear()} Gildong Hong. All rights reserved.
+            © {new Date().getFullYear()} Woojin Jung. All rights reserved.
           </p>
         </div>
 

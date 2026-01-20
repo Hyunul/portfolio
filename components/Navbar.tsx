@@ -24,7 +24,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* 로고 */}
           <div className="flex-shrink-0 font-bold text-xl cursor-pointer text-gray-900 dark:text-white">
-            <Link href="/" onClick={() => setIsOpen(false)}>MyPortfolio</Link>
+            <Link href="/" onClick={() => setIsOpen(false)}>Hyunul.dev</Link>
           </div>
           
           <div className="flex items-center gap-4">
