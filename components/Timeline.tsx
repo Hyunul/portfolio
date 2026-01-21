@@ -26,14 +26,6 @@ const timelineData: TimelineItem[] = [
   },
   {
     id: 2,
-    date: "2024.03",
-    title: "국립한밭대학교 졸업",
-    subtitle: "컴퓨터공학과 전공",
-    description: [],
-    type: "education"
-  },
-  {
-    id: 3,
     date: "2023.11 - 2024.01",
     title: "(주) 온랩",
     subtitle: "Backend Engineer (계약직)",
@@ -44,6 +36,14 @@ const timelineData: TimelineItem[] = [
       "서버 성능 개선: MySQL Connection Pooling 도입으로 데이터베이스 연결 효율을 높이고 시스템 안정성 강화"
     ],
     type: "work"
+  },
+  {
+    id: 3,
+    date: "2024.03",
+    title: "국립한밭대학교 졸업",
+    subtitle: "컴퓨터공학과 전공",
+    description: [],
+    type: "education"
   }
 ];
 
