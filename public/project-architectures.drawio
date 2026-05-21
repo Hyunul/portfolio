@@ -1,0 +1,223 @@
+<mxfile host="app.diagrams.net" modified="2026-05-21T00:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="loslung-architecture" name="Loslung">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title-l" value="Loslung Architecture" style="text;html=1;strokeColor=none;fillColor=none;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="520" y="30" width="560" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle-l" value="Lost Ark team scheduling platform with web, Discord, async workers, PostgreSQL, and Redis" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontColor=#555555;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="380" y="80" width="840" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="user-l" value="User / Group Admin" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="190" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="discord-user-l" value="Discord User&lt;br&gt;Slash commands" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="520" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="frontend-l" value="Next.js 16 Frontend&lt;br&gt;App Router / SSR&lt;br&gt;Server Actions / Proxy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="165" width="230" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="apache-l" value="Apache Reverse Proxy&lt;br&gt;/api - Backend&lt;br&gt;/ - Frontend&lt;br&gt;TLS via Let's Encrypt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="660" y="165" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="api-l" value="Spring Boot 3.5 API&lt;br&gt;Java 21&lt;br&gt;Security / JPA / Validation&lt;br&gt;REST controllers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="160" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="domain-l" value="Core Domains&lt;br&gt;Group / Team / Availability&lt;br&gt;Pair / Character / Raid&lt;br&gt;Auth / Activity / LostArk News" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="980" y="340" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="scheduler-l" value="Team Scheduling&lt;br&gt;Weekly survey open&lt;br&gt;Early schedule on all submissions&lt;br&gt;Friday auto confirm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="660" y="360" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="discord-bot-l" value="Discord Bot&lt;br&gt;/schedule submit&lt;br&gt;/this week&lt;br&gt;/next week" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="500" width="230" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="discord-oauth-l" value="Discord OAuth&lt;br&gt;identify / email&lt;br&gt;Account auto-link" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="660" width="230" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="postgres-l" value="PostgreSQL 16&lt;br&gt;JPA entities&lt;br&gt;Flyway migrations" style="shape=cylinder3d;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="150" width="170" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="redis-l" value="Redis" style="shape=cylinder3d;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="340" width="170" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="workers-l" value="Spring Boot Workers&lt;br&gt;Redis consumers&lt;br&gt;discord.webhook&lt;br&gt;activity.event&lt;br&gt;character.refresh&lt;br&gt;team.schedule.confirm&lt;br&gt;lostark.news.scrape" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="980" y="560" width="240" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="lostark-l" value="Lost Ark OpenAPI&lt;br&gt;Character lookup&lt;br&gt;News / profile data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="570" width="170" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="webhook-l" value="Discord Webhook&lt;br&gt;Team confirmation&lt;br&gt;@mention notifications" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="660" y="650" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="deploy-l" value="Deployment&lt;br&gt;Docker Compose&lt;br&gt;Apache / systemd / pm2 fallback&lt;br&gt;Testcontainers for integration tests" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="70" y="760" width="430" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1-l" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="user-l" target="frontend-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2-l" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="frontend-l" target="apache-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3-l" value="/api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="apache-l" target="api-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4-l" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="api-l" target="postgres-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5-l" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="api-l" target="redis-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6-l" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="api-l" target="domain-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7-l" value="schedule result" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="scheduler-l" target="domain-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8-l" value="slash events" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="discord-user-l" target="discord-bot-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9-l" value="availability submit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="discord-bot-l" target="api-l">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="555" />
+              <mxPoint x="590" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10-l" value="OAuth callback" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="discord-oauth-l" target="api-l">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="710" />
+              <mxPoint x="610" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11-l" value="publish events" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="domain-l" target="redis-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12-l" value="consume streams" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="redis-l" target="workers-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13-l" value="API calls" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="workers-l" target="lostark-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14-l" value="async delivery" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="workers-l" target="webhook-l">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15-l" value="notifications" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="webhook-l" target="discord-user-l">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="705" />
+              <mxPoint x="260" y="705" />
+              <mxPoint x="260" y="555" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram id="talktemperature-architecture" name="TalkTemperature">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title-t" value="TalkTemperature Architecture" style="text;html=1;strokeColor=none;fillColor=none;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="500" y="30" width="600" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle-t" value="Client-only KakaoTalk conversation analyzer. No server API, no DB, no auth, no LLM." style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontColor=#555555;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="390" y="80" width="820" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="boundary-t" value="Browser privacy boundary" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontSize=18;fontStyle=1;align=left;verticalAlign=top;spacingLeft=16;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="140" width="1100" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="user-t" value="User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="230" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="export-t" value="KakaoTalk Export Text&lt;br&gt;Android / iOS / plain lines" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="60" y="410" width="170" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="chatinput-t" value="Next.js 15 App Router&lt;br&gt;ChatInput&lt;br&gt;Text input + mode selection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="320" y="230" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="parser-t" value="Parser Layer&lt;br&gt;detectFormat&lt;br&gt;parseKakaoAndroid&lt;br&gt;parseKakaoIos&lt;br&gt;parsePlainNewline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="620" y="210" width="230" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="analysis-t" value="Analysis Pipeline&lt;br&gt;warmth / reciprocity / stability&lt;br&gt;timeline / half delta&lt;br&gt;confidence scoring" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="210" width="260" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="oneone-t" value="1:1 Mode&lt;br&gt;persona picker&lt;br&gt;self + relation context&lt;br&gt;relative insight" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="620" y="450" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="group-t" value="Group Mode&lt;br&gt;participation gini&lt;br&gt;response matrix&lt;br&gt;mentions / room persona&lt;br&gt;member labels" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="930" y="430" width="260" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="storage-t" value="sessionStorage&lt;br&gt;talktemperature:result" style="shape=cylinder3d;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="250" width="150" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="result-t" value="Result Page&lt;br&gt;Temperature gauge&lt;br&gt;Axis bars / timeline&lt;br&gt;signals / participant cards" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="450" width="220" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="share-t" value="Share Card&lt;br&gt;html-to-image&lt;br&gt;Copy / download PNG&lt;br&gt;names and raw text excluded" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="930" y="650" width="260" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dev-t" value="Verification&lt;br&gt;sample-analysis scripts&lt;br&gt;golden cases&lt;br&gt;persona regression checks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="320" y="650" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="no-server-t" value="Not used&lt;br&gt;Backend API&lt;br&gt;Database&lt;br&gt;Authentication&lt;br&gt;LLM / external network" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="650" width="180" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1-t" value="paste text" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="user-t" target="chatinput-t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2-t" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="export-t" target="chatinput-t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3-t" value="parse()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="chatinput-t" target="parser-t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4-t" value="Message[]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="parser-t" target="analysis-t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5-t" value="2 participants" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="analysis-t" target="oneone-t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6-t" value="3+ participants" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="analysis-t" target="group-t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7-t" value="AnalysisResult" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="analysis-t" target="storage-t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8-t" value="restore result" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="storage-t" target="result-t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9-t" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="oneone-t" target="result-t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10-t" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="group-t" target="result-t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11-t" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="result-t" target="share-t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12-t" value="regression inputs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1" source="dev-t" target="parser-t">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="710" />
+              <mxPoint x="590" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
