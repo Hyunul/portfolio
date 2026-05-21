@@ -1,0 +1,12 @@
+<svg width="128" height="128" role="img" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-labelledby="redis-title">
+  <title id="redis-title">Redis</title>
+  <path fill="#A41E11" d="M64 88 16 65.5 64 43l48 22.5L64 88Z"/>
+  <path fill="#D82C20" d="M64 76 16 53.5 64 31l48 22.5L64 76Z"/>
+  <path fill="#A41E11" d="M64 104 16 81.5 64 59l48 22.5L64 104Z"/>
+  <path fill="#D82C20" d="M64 92 16 69.5 64 47l48 22.5L64 92Z"/>
+  <path fill="#F04438" d="M64 60 16 37.5 64 15l48 22.5L64 60Z"/>
+  <path fill="#FFFFFF" d="M51.5 31.8 65.8 28l-4.3 10.3 15.7 5.8-20.3 2.1 4.1-8.9-9.5-5.5Z"/>
+  <ellipse cx="42" cy="38" rx="8.5" ry="4.6" fill="#FFFFFF"/>
+  <ellipse cx="76.5" cy="31.5" rx="8.5" ry="4.6" fill="#FFFFFF"/>
+  <ellipse cx="87.5" cy="46" rx="8.5" ry="4.6" fill="#FFFFFF"/>
+</svg>

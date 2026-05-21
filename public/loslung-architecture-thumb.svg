@@ -1,0 +1,99 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" rx="28" fill="#F8FAFC"/>
+  <rect x="28" y="28" width="1144" height="619" rx="24" fill="#FFFFFF" stroke="#DBEAFE" stroke-width="2"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,8 L11,4 z" fill="#2563EB"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0F172A" flood-opacity="0.13"/>
+    </filter>
+  </defs>
+
+  <text x="600" y="72" text-anchor="middle" fill="#0F172A" font-family="Arial, sans-serif" font-size="36" font-weight="800">Loslung Architecture</text>
+  <text x="600" y="104" text-anchor="middle" fill="#64748B" font-family="Arial, sans-serif" font-size="16">Lost Ark team scheduling platform</text>
+
+  <g stroke="#2563EB" stroke-width="4" marker-end="url(#arrow)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M158 244H250"/>
+    <path d="M390 244H486"/>
+    <path d="M658 244H754"/>
+    <path d="M870 220L974 174"/>
+    <path d="M870 268L974 328"/>
+    <path d="M336 390V316"/>
+    <path d="M442 444H536"/>
+    <path d="M682 444H754"/>
+    <path d="M870 444H974"/>
+    <path d="M602 384V316"/>
+  </g>
+
+  <g filter="url(#shadow)" font-family="Arial, sans-serif">
+    <g transform="translate(62 196)">
+      <rect width="96" height="96" rx="24" fill="#DBEAFE" stroke="#93C5FD"/>
+      <circle cx="48" cy="36" r="18" fill="#2563EB"/>
+      <path d="M20 76C26 58 70 58 76 76" stroke="#2563EB" stroke-width="8" stroke-linecap="round"/>
+      <text x="48" y="126" text-anchor="middle" fill="#1E3A8A" font-size="18" font-weight="700">Users</text>
+      <text x="48" y="148" text-anchor="middle" fill="#64748B" font-size="12">Admin / Member</text>
+    </g>
+
+    <g transform="translate(250 166)">
+      <rect width="140" height="150" rx="24" fill="#F8FAFC" stroke="#CBD5E1"/>
+      <image href="/logos/nextdotjs.svg" x="35" y="24" width="70" height="70" preserveAspectRatio="xMidYMid meet"/>
+      <text x="70" y="118" text-anchor="middle" fill="#0F172A" font-size="19" font-weight="800">Next.js</text>
+      <text x="70" y="138" text-anchor="middle" fill="#64748B" font-size="12">SSR Frontend</text>
+    </g>
+
+    <g transform="translate(486 166)">
+      <rect width="172" height="150" rx="24" fill="#ECFDF5" stroke="#86EFAC"/>
+      <image href="/logos/springboot.svg" x="51" y="20" width="70" height="70" preserveAspectRatio="xMidYMid meet"/>
+      <text x="86" y="118" text-anchor="middle" fill="#166534" font-size="19" font-weight="800">Spring Boot</text>
+      <text x="86" y="138" text-anchor="middle" fill="#64748B" font-size="12">Java API</text>
+    </g>
+
+    <g transform="translate(754 166)">
+      <rect width="116" height="150" rx="24" fill="#EFF6FF" stroke="#BFDBFE"/>
+      <image href="/logos/typescript.svg" x="28" y="26" width="60" height="60" preserveAspectRatio="xMidYMid meet"/>
+      <text x="58" y="118" text-anchor="middle" fill="#1E3A8A" font-size="18" font-weight="800">REST</text>
+      <text x="58" y="138" text-anchor="middle" fill="#64748B" font-size="12">API contract</text>
+    </g>
+
+    <g transform="translate(974 116)">
+      <rect width="144" height="118" rx="24" fill="#EFF6FF" stroke="#BFDBFE"/>
+      <image href="/logos/postgresql.svg" x="41" y="18" width="62" height="62" preserveAspectRatio="xMidYMid meet"/>
+      <text x="72" y="100" text-anchor="middle" fill="#0F172A" font-size="17" font-weight="800">PostgreSQL</text>
+    </g>
+
+    <g transform="translate(974 282)">
+      <rect width="144" height="118" rx="24" fill="#FEF2F2" stroke="#FCA5A5"/>
+      <image href="/logos/redis.svg" x="39" y="18" width="66" height="66" preserveAspectRatio="xMidYMid meet"/>
+      <text x="72" y="100" text-anchor="middle" fill="#0F172A" font-size="17" font-weight="800">Redis</text>
+    </g>
+
+    <g transform="translate(226 390)">
+      <rect width="216" height="122" rx="24" fill="#F5F3FF" stroke="#C4B5FD"/>
+      <image href="/logos/discord.svg" x="76" y="22" width="64" height="64" preserveAspectRatio="xMidYMid meet"/>
+      <text x="108" y="100" text-anchor="middle" fill="#312E81" font-size="18" font-weight="800">Discord</text>
+      <text x="108" y="119" text-anchor="middle" fill="#64748B" font-size="12">OAuth / Bot / Webhook</text>
+    </g>
+
+    <g transform="translate(536 384)">
+      <rect width="146" height="128" rx="24" fill="#ECFDF5" stroke="#86EFAC"/>
+      <image href="/logos/springboot.svg" x="40" y="20" width="66" height="66" preserveAspectRatio="xMidYMid meet"/>
+      <text x="73" y="104" text-anchor="middle" fill="#166534" font-size="17" font-weight="800">Workers</text>
+      <text x="73" y="123" text-anchor="middle" fill="#64748B" font-size="12">Spring Boot</text>
+    </g>
+
+    <g transform="translate(754 384)">
+      <rect width="116" height="128" rx="24" fill="#FFF7ED" stroke="#FDBA74"/>
+      <text x="58" y="62" text-anchor="middle" fill="#EA580C" font-size="42" font-weight="900">LOA</text>
+      <text x="58" y="104" text-anchor="middle" fill="#9A3412" font-size="17" font-weight="800">Lost Ark</text>
+      <text x="58" y="123" text-anchor="middle" fill="#64748B" font-size="12">OpenAPI</text>
+    </g>
+
+    <g transform="translate(974 434)">
+      <rect width="144" height="102" rx="24" fill="#EFF6FF" stroke="#BFDBFE"/>
+      <image href="/logos/docker.svg" x="40" y="14" width="64" height="64" preserveAspectRatio="xMidYMid meet"/>
+      <text x="72" y="88" text-anchor="middle" fill="#0F172A" font-size="17" font-weight="800">Docker</text>
+    </g>
+  </g>
+</svg>

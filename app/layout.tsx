@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hyunul.dev",
-  description: "Portfolio website created with Next.js",
+  title: "Woojin Jung | Backend Developer",
+  description: "정우진 백엔드 개발자 포트폴리오",
 };
 
 export default function RootLayout({

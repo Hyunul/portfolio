@@ -1,0 +1,99 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" rx="28" fill="#F0FDF4"/>
+  <rect x="28" y="28" width="1144" height="619" rx="24" fill="#FFFFFF" stroke="#BBF7D0" stroke-width="2"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,8 L11,4 z" fill="#059669"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0F172A" flood-opacity="0.13"/>
+    </filter>
+  </defs>
+
+  <text x="600" y="72" text-anchor="middle" fill="#0F172A" font-family="Arial, sans-serif" font-size="36" font-weight="800">TalkTemperature Architecture</text>
+  <text x="600" y="104" text-anchor="middle" fill="#64748B" font-family="Arial, sans-serif" font-size="16">Client-only KakaoTalk conversation analyzer</text>
+
+  <rect x="206" y="146" width="780" height="412" rx="28" fill="#F8FAFC" stroke="#10B981" stroke-width="3" stroke-dasharray="10 10"/>
+  <text x="242" y="180" fill="#047857" font-family="Arial, sans-serif" font-size="18" font-weight="800">Browser privacy boundary</text>
+
+  <g stroke="#059669" stroke-width="4" marker-end="url(#arrow)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M170 288H260"/>
+    <path d="M402 288H494"/>
+    <path d="M636 288H728"/>
+    <path d="M856 288H950"/>
+    <path d="M565 370V442"/>
+    <path d="M802 370V442"/>
+    <path d="M880 500H950"/>
+    <path d="M565 224V172"/>
+  </g>
+
+  <g filter="url(#shadow)" font-family="Arial, sans-serif">
+    <g transform="translate(72 240)">
+      <rect width="98" height="98" rx="24" fill="#FDE68A" stroke="#FACC15"/>
+      <image href="/logos/kakaotalk.svg" x="22" y="22" width="54" height="54" preserveAspectRatio="xMidYMid meet"/>
+      <text x="49" y="128" text-anchor="middle" fill="#854D0E" font-size="18" font-weight="800">KakaoTalk</text>
+      <text x="49" y="150" text-anchor="middle" fill="#64748B" font-size="12">Export text</text>
+    </g>
+
+    <g transform="translate(260 210)">
+      <rect width="142" height="158" rx="24" fill="#F8FAFC" stroke="#CBD5E1"/>
+      <image href="/logos/nextdotjs.svg" x="36" y="20" width="70" height="70" preserveAspectRatio="xMidYMid meet"/>
+      <image href="/logos/react.svg" x="43" y="82" width="56" height="56" preserveAspectRatio="xMidYMid meet"/>
+      <text x="71" y="148" text-anchor="middle" fill="#0F172A" font-size="17" font-weight="800">Next.js / React</text>
+    </g>
+
+    <g transform="translate(494 210)">
+      <rect width="142" height="158" rx="24" fill="#EFF6FF" stroke="#BFDBFE"/>
+      <image href="/logos/typescript.svg" x="39" y="24" width="64" height="64" preserveAspectRatio="xMidYMid meet"/>
+      <text x="71" y="116" text-anchor="middle" fill="#1E3A8A" font-size="19" font-weight="800">Parser</text>
+      <text x="71" y="138" text-anchor="middle" fill="#64748B" font-size="12">Android / iOS</text>
+    </g>
+
+    <g transform="translate(728 210)">
+      <rect width="128" height="158" rx="24" fill="#ECFEFF" stroke="#67E8F9"/>
+      <image href="/logos/tailwindcss.svg" x="32" y="24" width="64" height="64" preserveAspectRatio="xMidYMid meet"/>
+      <text x="64" y="118" text-anchor="middle" fill="#155E75" font-size="18" font-weight="800">Tailwind</text>
+      <text x="64" y="138" text-anchor="middle" fill="#64748B" font-size="12">UI styling</text>
+    </g>
+
+    <g transform="translate(950 210)">
+      <rect width="156" height="158" rx="24" fill="#FFF7ED" stroke="#FDBA74"/>
+      <path d="M42 104V52" stroke="#EA580C" stroke-width="10" stroke-linecap="round"/>
+      <path d="M78 104V34" stroke="#EA580C" stroke-width="10" stroke-linecap="round"/>
+      <path d="M114 104V70" stroke="#EA580C" stroke-width="10" stroke-linecap="round"/>
+      <path d="M36 108H122" stroke="#EA580C" stroke-width="6" stroke-linecap="round"/>
+      <text x="78" y="134" text-anchor="middle" fill="#9A3412" font-size="19" font-weight="800">Recharts</text>
+      <text x="78" y="153" text-anchor="middle" fill="#64748B" font-size="12">Charts</text>
+    </g>
+
+    <g transform="translate(474 442)">
+      <rect width="182" height="118" rx="24" fill="#F3E8FF" stroke="#C4B5FD"/>
+      <text x="91" y="46" text-anchor="middle" fill="#7E22CE" font-size="26" font-weight="900">1:1</text>
+      <text x="91" y="76" text-anchor="middle" fill="#1E293B" font-size="18" font-weight="800">Persona</text>
+      <text x="91" y="98" text-anchor="middle" fill="#64748B" font-size="12">self + relation context</text>
+    </g>
+
+    <g transform="translate(712 442)">
+      <rect width="168" height="118" rx="24" fill="#F3E8FF" stroke="#C4B5FD"/>
+      <circle cx="56" cy="50" r="17" fill="#9333EA"/>
+      <circle cx="88" cy="50" r="17" fill="#A855F7"/>
+      <circle cx="72" cy="80" r="17" fill="#7E22CE"/>
+      <text x="84" y="106" text-anchor="middle" fill="#1E293B" font-size="18" font-weight="800">Group Mode</text>
+    </g>
+
+    <g transform="translate(950 442)">
+      <rect width="156" height="118" rx="24" fill="#FEFCE8" stroke="#FDE047"/>
+      <rect x="38" y="28" width="80" height="58" rx="10" fill="#FACC15"/>
+      <circle cx="78" cy="57" r="16" fill="#FFFFFF"/>
+      <path d="M50 96H106" stroke="#CA8A04" stroke-width="8" stroke-linecap="round"/>
+      <text x="78" y="112" text-anchor="middle" fill="#854D0E" font-size="16" font-weight="800">html-to-image</text>
+    </g>
+
+    <g transform="translate(270 442)">
+      <rect width="150" height="118" rx="24" fill="#F8FAFC" stroke="#CBD5E1"/>
+      <image href="/logos/pnpm.svg" x="43" y="24" width="64" height="64" preserveAspectRatio="xMidYMid meet"/>
+      <text x="75" y="106" text-anchor="middle" fill="#1E293B" font-size="17" font-weight="800">Golden Tests</text>
+    </g>
+  </g>
+</svg>
