@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import Skills from '@/components/Skills';
 import Timeline from '@/components/Timeline';
 import Projects from '@/components/Projects';
+import Cases from '@/components/Cases';
 import Footer from '@/components/Footer';
 import ScrollProgress from '@/components/ScrollProgress';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -16,6 +17,7 @@ export default function Home() {
         <Hero />
         <Skills />
         <Timeline />
+        <Cases />
         <Projects />
       </div>
       <Footer />

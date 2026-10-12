@@ -5,28 +5,28 @@ import { motion } from "framer-motion";
 const skillCategories = [
   {
     title: "Backend",
-    skills: ["Java", "Spring MVC", "Spring Framework", "MyBatis"],
+    skills: ["Java 8", "Spring MVC", "MyBatis", "JSP / JSTL"],
     accent: "text-green-500",
     iconPath:
       "M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01",
   },
   {
     title: "Database",
-    skills: ["MariaDB", "SQL"],
+    skills: ["MySQL", "집계 쿼리 분석", "MyBatis 동적 쿼리"],
     accent: "text-blue-500",
     iconPath:
       "M4 7c0 1.657 3.582 3 8 3s8-1.343 8-3-3.582-3-8-3-8 1.343-8 3zm0 0v10c0 1.657 3.582 3 8 3s8-1.343 8-3V7m0 5c0 1.657 3.582 3 8 3s8-1.343 8-3",
   },
   {
     title: "Frontend / View",
-    skills: ["JSP", "jQuery", "JavaScript", "HTML", "CSS"],
+    skills: ["JavaScript", "jQuery", "HTML", "CSS", "국문 / 영문 / 모바일 대응"],
     accent: "text-indigo-500",
     iconPath:
       "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
   },
   {
-    title: "Infra / Integration",
-    skills: ["Tomcat", "SVN", "GIT"],
+    title: "Infra / Security",
+    skills: ["Tomcat", "SVN", "Git", "XSS / XXE / CSRF 조치", "권한 우회(IDOR) 차단"],
     accent: "text-purple-500",
     iconPath:
       "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z",

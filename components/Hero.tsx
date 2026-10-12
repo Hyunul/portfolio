@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const highlights = [
-  "공공/HPC 업무 시스템 운영 개선",
-  "JSP | Spring | MVC | MyBatis 흐름 분석",
-  "신청·평가·회원·인증 기능 개발",
-  "고객사 요청 접수 및 검수 대응",
+  "공공 웹 시스템 3종 2년간 개발과 운영",
+  "취약점 진단 지적사항 3회 전건 조치",
+  "외부 API 장애 격리와 스케줄러 캐시 전환",
+  "집계 쿼리 정합성 복구와 장애 당일 해결",
 ];
 
 export default function Hero() {
@@ -27,7 +27,7 @@ export default function Hero() {
             Backend Developer
           </span>
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight dark:text-white break-keep">
-            운영 흐름을 끝까지 추적하는
+            운영 중인 서비스를 지키면서 개선하는
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
               백엔드 개발자 정우진
@@ -35,9 +35,10 @@ export default function Hero() {
             입니다.
           </h1>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed break-keep">
-            공공/HPC 업무 시스템의 신청, 평가, 회원, 인증, 개인정보
-            기능을 운영·개선해 왔습니다. 화면, 서버 로직, SQL을 함께 추적해
-            실제 업무 흐름에 맞는 안정적인 수정을 만드는 데 집중합니다.
+            Java/Spring 기반 공공 웹 시스템을 2년간 운영하며 기능 개발과 보안 조치,
+            장애 대응을 함께 담당했습니다. 취약점 지적사항은 화면별 수정이 아니라
+            공통 함수와 인터셉터로 한 번에 반영하고, 외부 API 장애가 메인으로 번지던
+            구조를 캐시와 장애 격리로 바꾼 것처럼 원인을 제거하는 수정을 합니다.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-10 max-w-5xl mx-auto">
@@ -46,14 +47,7 @@ export default function Hero() {
                 key={highlight}
                 className="flex min-h-16 flex-wrap items-center justify-center rounded-lg border border-gray-200 bg-white/80 px-3 py-3 text-center text-[13px] font-medium leading-snug text-balance text-gray-700 shadow-sm break-keep dark:border-gray-700 dark:bg-gray-800/80 dark:text-gray-200 md:px-4 lg:text-sm"
               >
-                {highlight === "JSP | Spring | MVC | MyBatis 흐름 분석" ? (
-                  <>
-                    <span className="whitespace-nowrap">JSP | Spring | MVC | MyBatis</span>
-                    <span className="basis-full">흐름 분석</span>
-                  </>
-                ) : (
-                  highlight
-                )}
+                {highlight}
               </div>
             ))}
           </div>
@@ -91,7 +85,7 @@ export default function Hero() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
               <a
-                href="https://hyunul.tistory.com"
+                href="https://hyunul.github.io"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-base"

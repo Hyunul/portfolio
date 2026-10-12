@@ -15,22 +15,47 @@ const timelineData: TimelineItem[] = [
   {
     id: 1,
     date: "2024.06 - 재직 중",
-    title: "(주)카이런소프트",
+    title: "카이론소프트",
     subtitle: "웹 개발자 / 정규직",
     description: [
-      "국가슈퍼컴퓨팅센터의 HPC 사업 지원 플랫폼 사용자 포털, 관리자, 평가관리, LDAP 운영 기능 유지보수 및 추가 개발",
-      "JSP, jQuery, Spring MVC Controller/Service, MyBatis SQL 흐름을 함께 추적해 조회 오류, 예외, 인증 흐름, 관리자 화면 이슈 수정",
-      "이메일 인증 및 서버 검증 흐름을 보완해 화면 검증에만 의존하던 개인정보 저장 흐름 개선",
-      "평가관리 화면의 연도·프로그램 필터, 집계 쿼리, 합계 표시 로직을 정리해 필터 기준과 일치하는 결과 제공",
-      "2026.03부터 고객사 요청사항 직접 접수, 영향 범위 정리, 개발 및 검수 대응 수행",
+      "KISTI 국가슈퍼컴퓨팅센터 웹 시스템 3종(사용자 포털, 관리자 시스템, 계정과 계약 관리 시스템)의 개발과 운영 담당. Java 8, Spring MVC, MyBatis, JSP, MySQL",
+      "웹 취약점 진단 및 모의해킹 지적사항 조치 (2025.04 ~ 2026.08, 3회): XSS 공통 함수를 설계해 JSP 312개에 일괄 적용, XXE, CSRF, 경로 조작, 권한 우회를 서버 검증으로 차단",
+      "메인 사용현황 구조 개선 (2026.01 ~ 05): 요청마다 외부 API를 호출하던 구조를 1분 주기 스케줄러 캐시로 전환하고 엔드포인트별 장애 격리와 timeout 적용",
+      "R&D 혁신지원 신청서 고도화 (2025.03 ~ 11): 연구 키워드, AI 활용, 재직증명서, 서브분야별 자원 관리 등 신규 항목을 공고 일정에 맞춰 반영",
+      "통계 정합성 확보: 과제 수, 논문 수, 성과물 수 집계 쿼리의 중복 join과 상태 조건 누락을 바로잡고 엑셀 다운로드 3종 추가",
+      "한강(6호기) 신규 시스템 소개와 신청 페이지 개발, 유지보수 브랜치 운영과 trunk 병합 (2026.07 ~ 09)",
     ],
     type: "work",
   },
   {
     id: 2,
-    date: "2024.03",
+    date: "2026.06",
+    title: "ADsP 취득",
+    subtitle: "데이터분석 준전문가",
+    description: [],
+    type: "education",
+  },
+  {
+    id: 3,
+    date: "2025.12",
+    title: "정보처리기사 취득",
+    subtitle: "한국산업인력공단",
+    description: [],
+    type: "education",
+  },
+  {
+    id: 4,
+    date: "2022.03 - 2024.02",
     title: "국립한밭대학교 졸업",
-    subtitle: "컴퓨터공학과 전공",
+    subtitle: "컴퓨터공학과 (3.48 / 4.5)",
+    description: [],
+    type: "education",
+  },
+  {
+    id: 5,
+    date: "2021.10",
+    title: "네트워크관리사 2급 취득",
+    subtitle: "한국정보통신자격협회",
     description: [],
     type: "education",
   },
@@ -50,7 +75,7 @@ export default function Timeline() {
           transition={{ duration: 0.5 }}
           className="text-3xl font-bold mb-12 text-center dark:text-white"
         >
-          Experience & Education
+          Experience, Education & Certificates
         </motion.h2>
 
         <div className="relative border-l-2 border-gray-200 dark:border-gray-700 ml-3 md:ml-6 space-y-12">
