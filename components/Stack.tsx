@@ -2,7 +2,7 @@
 
 // 라벨 앞부분(버전 제외)으로 public/logos/*.svg를 찾는다. 로고가 없는 항목은 글자 배지로 표시한다.
 const logoSlugs: Record<string, string> = {
-  Java: "openjdk",
+  Java: "java",
   Spring: "spring",
   "Spring MVC": "spring",
   "Spring Boot": "springboot",
