@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { StackBadge } from "./Stack";
 
 const skillCategories = [
   {
@@ -74,12 +75,7 @@ export default function Skills() {
 
               <div className="flex flex-wrap justify-center gap-3">
                 {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium break-keep"
-                  >
-                    {skill}
-                  </span>
+                  <StackBadge key={skill} label={skill} />
                 ))}
               </div>
             </motion.div>

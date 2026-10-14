@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { LinkButtons, StackList } from "./Stack";
 
 interface Project {
   id: number;
@@ -23,21 +24,21 @@ const projectData: Project[] = [
     id: 1,
     title: "CBT Exam Platform",
     links: [
-      { label: "서비스", href: "https://cert-cbt.site" },
-      { label: "GitHub", href: "https://github.com/Hyunul/CBT" },
+      { label: "서비스 바로가기", href: "https://cert-cbt.site" },
+      { label: "GitHub 저장소", href: "https://github.com/Hyunul/CBT" },
     ],
     type: "Full-stack",
     period: "2025.11 - 2026.10",
     description: "자격증 기출문제를 실제 시험처럼 풀어 보는 CBT 웹 서비스 (cert-cbt.site 운영 중)",
     details:
-      "정보처리기사·정보보안기사 기출을 실제 시험처럼 풀어 보는 CBT 서비스입니다. 게스트·회원 응시, 답안 자동 저장, 서버 채점, 결과 리뷰, 실기 학습 모드, 종목별 랭킹을 제공합니다. GCP VM에서 Nginx(TLS)·Spring Boot·Next.js·MySQL·Redis를 Docker Compose로 운영하고, GitHub Actions가 테스트부터 MySQL 포함 전체 스택 통합 검증, 커밋 SHA 이미지 배포까지 자동으로 진행합니다. 기출 PDF와 블로그를 파싱해 3,320문항을 적재했습니다.",
+      "정보처리기사, 정보보안기사 기출을 실제 시험처럼 풀어 보는 CBT 서비스입니다. 게스트, 회원 응시, 답안 자동 저장, 서버 채점, 결과 리뷰, 실기 학습 모드, 종목별 랭킹을 제공합니다. GCP VM에서 Nginx(TLS), Spring Boot, Next.js, MySQL, Redis를 Docker Compose로 운영하고, GitHub Actions가 테스트부터 MySQL 포함 전체 스택 통합 검증, 커밋 SHA 이미지 배포까지 자동으로 진행합니다. 기출 PDF와 블로그를 파싱해 3,320문항을 적재했습니다.",
     contributions: [
       "k6 부하 테스트로 시험 잠금 조회 안의 COUNT 서브쿼리를 찾아, 응시 20만 건이 쌓인 시험의 응시 시작 p95를 7.04s → 10.1ms로 단축",
       "제출 시 채점 결과 UPDATE(답안 100개 + 응시 1개)를 JDBC 배치로 묶어 DB 왕복을 101회 → 3회로 축소",
-      "여러 탭의 동시 제출·자동 저장 충돌을 행 잠금과 고유 제약으로 직렬화하고, CI가 실제 MySQL 8에서 동시 제출 결과를 검증",
-      "JWT + Refresh Token 회전, Google·Kakao OAuth2 일회용 코드 교환으로 토큰 노출을 막고, 게스트는 응시별 비밀키로 소유권 증명",
-      "기출 교사용 PDF 파서로 문항·보기·이미지·정답을 추출하고, 정답 표시와 정답표를 대조해 필기 2,900문항 전부 일치 확인",
-      "Micrometer·Prometheus·Grafana로 엔드포인트 지연, 5xx 비율, DB 커넥션 풀, 업무 지표를 관측하고 경보 규칙 4종 운영",
+      "여러 탭의 동시 제출, 자동 저장 충돌을 행 잠금과 고유 제약으로 직렬화하고, CI가 실제 MySQL 8에서 동시 제출 결과를 검증",
+      "JWT + Refresh Token 회전, Google, Kakao OAuth2 일회용 코드 교환으로 토큰 노출을 막고, 게스트는 응시별 비밀키로 소유권 증명",
+      "기출 교사용 PDF 파서로 문항, 보기, 이미지, 정답을 추출하고, 정답 표시와 정답표를 대조해 필기 2,900문항 전부 일치 확인",
+      "Micrometer, Prometheus, Grafana로 엔드포인트 지연, 5xx 비율, DB 커넥션 풀, 업무 지표를 관측하고 경보 규칙 4종 운영",
     ],
     tags: ["Java 17", "Spring Boot 3.5", "Next.js 16", "MySQL 8", "Redis 7", "Nginx", "Docker", "GitHub Actions", "Prometheus"],
     imageColor: "bg-slate-100 dark:bg-slate-900",
@@ -129,31 +130,10 @@ export default function Projects() {
               <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 break-keep">
                 {project.description}
               </p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 text-xs rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
+              <div className="space-y-4">
+                {!!project.links?.length && <LinkButtons links={project.links} />}
+                <StackList items={project.tags} />
               </div>
-              {!!project.links?.length && (
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {project.links.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800 transition-colors hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-              )}
             </div>
           </motion.div>
         ))}
@@ -216,32 +196,11 @@ export default function Projects() {
                   </svg>
                   {selectedProject.period}
                 </p>
-                {!!selectedProject.links?.length && (
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {selectedProject.links.map((link) => (
-                      <a
-                        key={link.href}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800 transition-colors hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800"
-                      >
-                        {link.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
+                {!!selectedProject.links?.length && <div className="mt-4"><LinkButtons links={selectedProject.links} /></div>}
               </div>
 
-              <div className="flex flex-wrap gap-2 mb-8">
-                {selectedProject.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-semibold rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
+              <div className="mb-8">
+                <StackList items={selectedProject.tags} />
               </div>
 
               <div className="prose dark:prose-invert max-w-none mb-8 text-gray-700 dark:text-gray-300 space-y-8">
