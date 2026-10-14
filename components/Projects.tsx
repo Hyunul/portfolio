@@ -1,68 +1,152 @@
+"use client";
+
 import Image from "next/image";
+import { useRef, useState } from "react";
+import { projects, type Project } from "@/data/projects";
 import Section from "./Section";
-import { LinkButtons, StackList } from "./Stack";
+import { LinkButtons, StackBadge, StackList } from "./Stack";
 
-const links = [
-  { label: "서비스 바로가기  cert-cbt.site", href: "https://cert-cbt.site" },
-  { label: "GitHub 저장소  Hyunul/CBT", href: "https://github.com/Hyunul/CBT" },
-];
+const CARD_STACK_LIMIT = 6;
 
-const metrics = [
-  ["7.04s → 10.1ms", "응시 20만 건 시험의 응시 시작 p95"],
-  ["101회 → 3회", "제출 1회당 DB 왕복"],
-  ["2,900문항", "필기 정답 대조 전부 일치"],
-];
+function Thumbnail({ project, sizes }: { project: Project; sizes: string }) {
+  return project.image ? (
+    <Image src={project.image} alt={`${project.title} 아키텍처`} width={1600} height={900} sizes={sizes} className="aspect-video h-auto w-full object-contain" />
+  ) : (
+    <div className="flex aspect-video items-center justify-center text-2xl font-bold text-slate-400">{project.title}</div>
+  );
+}
 
-const contributions = [
-  "k6 부하 테스트로 시험 잠금 조회 안의 COUNT 서브쿼리를 찾아 응시 시작 p95를 7.04s에서 10.1ms로 단축",
-  "채점 결과 UPDATE(답안 100개와 응시 1개)를 JDBC 배치로 묶어 DB 왕복을 101회에서 3회로 축소",
-  "여러 탭의 동시 제출과 자동 저장 충돌을 행 잠금과 고유 제약으로 직렬화하고, CI가 실제 MySQL 8에서 동시 제출 결과를 검증",
-  "JWT와 Refresh Token 회전, Google과 Kakao OAuth2 일회용 코드 교환으로 토큰 노출을 막고 게스트는 응시별 비밀키로 소유권 증명",
-  "Micrometer, Prometheus, Grafana로 지연, 5xx 비율, DB 커넥션 풀, 업무 지표를 관측하고 경보 규칙 4종 운영",
-];
-
-const stack = ["Java 17", "Spring Boot 3.5", "Next.js 16", "MySQL 8", "Redis 7", "Nginx", "Docker", "GitHub Actions", "Prometheus", "Grafana"];
-
-export default function Projects() {
+function Header({ project, large = false }: { project: Project; large?: boolean }) {
   return (
-    <Section id="projects" eyebrow="SIDE PROJECT" title="개인 프로젝트">
-      <article className="overflow-hidden rounded-[20px] border border-slate-200 dark:border-gray-800">
-        <a href="/cbt-architecture.png" target="_blank" rel="noopener noreferrer" className="block bg-slate-50" title="아키텍처 크게 보기">
-          <Image src="/cbt-architecture.png" alt="CBT Exam Platform 시스템 아키텍처" width={3840} height={2160} sizes="(min-width: 1120px) 1120px, 100vw" className="h-auto w-full" />
-        </a>
-        <div className="space-y-6 p-6 md:p-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <h3 className="text-3xl font-bold text-slate-900 dark:text-white">CBT Exam Platform</h3>
-            <span className="rounded-full bg-blue-600 px-2.5 py-1 text-xs font-bold text-white">Full-stack</span>
-            <span className="ml-auto text-sm font-medium text-slate-500">2025.11 ~ 2026.10 | 운영 중</span>
-          </div>
-          <p className="text-base leading-[1.7] text-slate-600 dark:text-slate-300 break-keep">
-            정보처리기사와 정보보안기사 기출문제를 실제 시험처럼 풀어 보는 CBT 웹 서비스입니다. 게스트와 회원 응시, 답안 자동 저장, 서버
-            채점, 결과 리뷰, 실기 학습 모드, 종목별 랭킹을 제공하고, 기출 PDF와 블로그를 파싱해 3,320문항을 적재했습니다.
-          </p>
-          <LinkButtons links={links} />
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {metrics.map(([n, l]) => (
-              <div key={n} className="rounded-xl bg-slate-50 px-5 py-4.5 dark:bg-gray-900">
-                <p className="text-[22px] font-bold text-blue-600 dark:text-blue-400">{n}</p>
-                <p className="mt-1 text-[13px] text-slate-500">{l}</p>
+    <div className="space-y-1.5">
+      <div className="flex flex-wrap items-center gap-2.5">
+        <h3 className={`${large ? "text-3xl" : "text-xl"} font-bold text-slate-900 dark:text-white`}>{project.title}</h3>
+        <span className="rounded-full bg-blue-600 px-2.5 py-0.5 text-xs font-bold text-white">{project.type}</span>
+      </div>
+      <p className="text-sm font-medium text-slate-500">
+        {project.period}
+        {project.status && ` | ${project.status}`}
+      </p>
+    </div>
+  );
+}
+
+function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
+  const rest = project.stack.length - CARD_STACK_LIMIT;
+  return (
+    <article className="flex flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white transition-shadow hover:shadow-lg dark:border-gray-800 dark:bg-gray-950">
+      <button type="button" onClick={onOpen} className="group relative block bg-slate-50 dark:bg-gray-900" aria-label={`${project.title} 자세히 보기`}>
+        <Thumbnail project={project} sizes="(min-width: 768px) 548px, 100vw" />
+        <span className="absolute inset-0 flex items-center justify-center bg-black/0 text-sm font-bold text-white opacity-0 transition group-hover:bg-black/30 group-hover:opacity-100">
+          자세히 보기
+        </span>
+      </button>
+      <div className="flex flex-1 flex-col gap-5 p-6">
+        <Header project={project} />
+        <p className="text-[15px] leading-[1.7] text-slate-600 dark:text-slate-300 break-keep">{project.summary}</p>
+        {!!project.metrics?.length && (
+          <div className="grid grid-cols-2 gap-3">
+            {project.metrics.slice(0, 2).map(([v, l]) => (
+              <div key={v} className="rounded-xl bg-slate-50 px-4 py-3 dark:bg-gray-900">
+                <p className="text-lg font-bold text-blue-600 dark:text-blue-400">{v}</p>
+                <p className="mt-0.5 text-xs text-slate-500 break-keep">{l}</p>
               </div>
             ))}
           </div>
-          <div>
-            <p className="mb-3 text-sm font-bold text-slate-500">구현 내용</p>
-            <ul className="space-y-2">
-              {contributions.map((c) => (
-                <li key={c} className="flex gap-3 text-[15px] leading-[1.7] text-slate-600 dark:text-slate-300 break-keep">
-                  <span className="text-slate-400">–</span>
-                  <span>{c}</span>
-                </li>
-              ))}
-            </ul>
+        )}
+        {!!project.links?.length && <LinkButtons links={project.links} />}
+        <div className="mt-auto border-t border-slate-200 pt-4 dark:border-gray-700">
+          <p className="mb-3 text-xs font-bold tracking-wider text-slate-500">TECH STACK</p>
+          <div className="flex flex-wrap gap-2">
+            {project.stack.slice(0, CARD_STACK_LIMIT).map((s) => (
+              <StackBadge key={s} label={s} />
+            ))}
+            {rest > 0 && (
+              <button type="button" onClick={onOpen} className="rounded-[10px] border border-dashed border-slate-300 px-3 text-sm font-medium text-slate-500 hover:text-slate-800">
+                +{rest}
+              </button>
+            )}
           </div>
-          <StackList items={stack} />
         </div>
-      </article>
+      </div>
+    </article>
+  );
+}
+
+export default function Projects() {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [selected, setSelected] = useState<Project | null>(null);
+
+  const open = (p: Project) => {
+    setSelected(p);
+    dialogRef.current?.showModal();
+  };
+
+  return (
+    <Section id="projects" eyebrow="SIDE PROJECTS" title="개인 프로젝트">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {projects.map((p) => (
+          <ProjectCard key={p.title} project={p} onOpen={() => open(p)} />
+        ))}
+      </div>
+
+      <dialog
+        ref={dialogRef}
+        onClose={() => setSelected(null)}
+        onClick={(e) => e.target === e.currentTarget && dialogRef.current?.close()}
+        className="m-auto w-[calc(100%-2rem)] max-w-3xl rounded-[20px] bg-white p-0 backdrop:bg-black/60 dark:bg-gray-950"
+      >
+        {selected && (
+          <div>
+            <div className="relative bg-slate-50 dark:bg-gray-900">
+              {selected.image ? (
+                <a href={selected.image} target="_blank" rel="noopener noreferrer" title="아키텍처 크게 보기">
+                  <Thumbnail project={selected} sizes="768px" />
+                </a>
+              ) : (
+                <Thumbnail project={selected} sizes="768px" />
+              )}
+              <button
+                type="button"
+                onClick={() => dialogRef.current?.close()}
+                className="absolute top-3 right-3 rounded-full bg-white/90 px-3 py-1 text-sm font-bold text-slate-700 shadow hover:bg-white"
+                aria-label="닫기"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="space-y-6 p-6 md:p-8">
+              <Header project={selected} large />
+              <p className="text-base leading-[1.7] text-slate-600 dark:text-slate-300 break-keep">
+                {selected.summary}. {selected.description}
+              </p>
+              {!!selected.links?.length && <LinkButtons links={selected.links} />}
+              {!!selected.metrics?.length && (
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                  {selected.metrics.map(([v, l]) => (
+                    <div key={v} className="rounded-xl bg-slate-50 px-5 py-4 dark:bg-gray-900">
+                      <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{v}</p>
+                      <p className="mt-1 text-[13px] text-slate-500 break-keep">{l}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div>
+                <p className="mb-3 text-sm font-bold text-slate-500">구현 내용</p>
+                <ul className="space-y-2">
+                  {selected.contributions.map((c) => (
+                    <li key={c} className="flex gap-3 text-[15px] leading-[1.7] text-slate-600 dark:text-slate-300 break-keep">
+                      <span className="text-slate-400">–</span>
+                      <span>{c}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <StackList items={selected.stack} />
+            </div>
+          </div>
+        )}
+      </dialog>
     </Section>
   );
 }
