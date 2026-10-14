@@ -15,7 +15,7 @@ const timelineData: TimelineItem[] = [
   {
     id: 1,
     date: "2024.06 - 재직 중",
-    title: "카이론소프트",
+    title: "카이런소프트",
     subtitle: "웹 개발자 / 정규직",
     description: [
       "KISTI 국가슈퍼컴퓨팅센터 웹 시스템 3종(사용자 포털, 관리자 시스템, 계정과 계약 관리 시스템)의 개발과 운영 담당. Java 8, Spring MVC, MyBatis, JSP, MySQL",
