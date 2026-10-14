@@ -44,6 +44,22 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
       <div className="flex flex-1 flex-col gap-5 p-6">
         <Header project={project} />
         <p className="text-[15px] leading-[1.7] text-slate-600 dark:text-slate-300 break-keep">{project.summary}</p>
+        {!!project.problems?.length && (
+          <div className="rounded-xl border border-slate-200 p-4 dark:border-gray-800">
+            <p className="mb-2 text-xs font-bold tracking-wider text-blue-600 dark:text-blue-400">문제 해결</p>
+            <ol className="space-y-1.5">
+              {project.problems.map((p, i) => (
+                <li key={p.title} className="flex gap-2 text-sm text-slate-700 dark:text-slate-300 break-keep">
+                  <span className="font-bold text-slate-400">{i + 1}</span>
+                  <span>{p.title}</span>
+                </li>
+              ))}
+            </ol>
+            <button type="button" onClick={onOpen} className="mt-3 text-sm font-bold text-blue-600 hover:underline dark:text-blue-400">
+              해결 과정 보기 →
+            </button>
+          </div>
+        )}
         {!!project.metrics?.length && (
           <div className="grid grid-cols-2 gap-3">
             {project.metrics.slice(0, 2).map(([v, l]) => (
@@ -128,6 +144,36 @@ export default function Projects() {
                       <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{v}</p>
                       <p className="mt-1 text-[13px] text-slate-500 break-keep">{l}</p>
                     </div>
+                  ))}
+                </div>
+              )}
+              {!!selected.problems?.length && (
+                <div className="space-y-4">
+                  <p className="text-sm font-bold text-slate-500">문제 해결 과정</p>
+                  {selected.problems.map((p, i) => (
+                    <section key={p.title} className="rounded-xl border border-slate-200 p-5 dark:border-gray-800">
+                      <h4 className="mb-3 text-lg font-bold text-slate-900 dark:text-white break-keep">
+                        <span className="mr-2 text-blue-600 dark:text-blue-400">{String(i + 1).padStart(2, "0")}</span>
+                        {p.title}
+                      </h4>
+                      <dl className="space-y-2.5">
+                        {(
+                          [
+                            ["문제", p.problem],
+                            ["원인", p.cause],
+                            ["해결", p.solution],
+                            ["결과", p.result],
+                          ] as const
+                        )
+                          .filter(([, v]) => v)
+                          .map(([k, v]) => (
+                            <div key={k} className="grid grid-cols-[3rem_1fr] gap-2">
+                              <dt className={`text-sm font-bold ${k === "결과" ? "text-blue-600 dark:text-blue-400" : "text-slate-400"}`}>{k}</dt>
+                              <dd className="text-[15px] leading-[1.7] text-slate-600 dark:text-slate-300 break-keep">{v}</dd>
+                            </div>
+                          ))}
+                      </dl>
+                    </section>
                   ))}
                 </div>
               )}
