@@ -1,87 +1,29 @@
-"use client";
-
-import { motion } from "framer-motion";
+import Section from "./Section";
 import { StackBadge } from "./Stack";
 
-const skillCategories = [
+const groups = [
+  { title: "업무에서 사용", items: ["Java 8", "Spring MVC", "MyBatis", "JSP/JSTL", "JavaScript", "jQuery", "MySQL", "Tomcat", "SVN"] },
   {
-    title: "Backend",
-    skills: ["Java 8", "Spring MVC", "MyBatis", "JSP / JSTL"],
-    accent: "text-green-500",
-    iconPath:
-      "M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01",
-  },
-  {
-    title: "Database",
-    skills: ["MySQL", "집계 쿼리 분석", "MyBatis 동적 쿼리"],
-    accent: "text-blue-500",
-    iconPath:
-      "M4 7c0 1.657 3.582 3 8 3s8-1.343 8-3-3.582-3-8-3-8 1.343-8 3zm0 0v10c0 1.657 3.582 3 8 3s8-1.343 8-3V7m0 5c0 1.657 3.582 3 8 3s8-1.343 8-3",
-  },
-  {
-    title: "Frontend / View",
-    skills: ["JavaScript", "jQuery", "HTML", "CSS", "국문 / 영문 / 모바일 대응"],
-    accent: "text-indigo-500",
-    iconPath:
-      "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-  },
-  {
-    title: "Infra / Security",
-    skills: ["Tomcat", "SVN", "Git", "XSS / XXE / CSRF 조치", "권한 우회(IDOR) 검증"],
-    accent: "text-purple-500",
-    iconPath:
-      "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z",
+    title: "개인 프로젝트에서 사용",
+    items: ["Java 17", "Spring Boot 3.5", "Next.js 16", "MySQL 8", "Redis 7", "Nginx", "Docker", "GitHub Actions", "Prometheus", "Grafana"],
   },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl font-bold mb-12 text-center dark:text-white"
-        >
-          Technical Skills
-        </motion.h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skillCategories.map((category, index) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.6, delay: index * 0.12 }}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300 border-t-4 border-transparent hover:border-blue-500"
-            >
-              <div className="flex flex-col items-center mb-6">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`h-8 w-8 mb-4 ${category.accent}`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={category.iconPath} />
-                </svg>
-                <h3 className="text-xl font-bold dark:text-white text-center break-keep">
-                  {category.title}
-                </h3>
-              </div>
-
-              <div className="flex flex-wrap justify-center gap-3">
-                {category.skills.map((skill) => (
-                  <StackBadge key={skill} label={skill} />
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+    <Section id="skills" eyebrow="SKILLS" title="기술 스택" tinted>
+      <div className="space-y-6">
+        {groups.map((g) => (
+          <div key={g.title} className="flex flex-col gap-3 md:flex-row md:gap-6">
+            <p className="w-[180px] shrink-0 pt-2 text-[15px] font-bold text-slate-600 dark:text-slate-300">{g.title}</p>
+            <div className="flex flex-wrap gap-2.5">
+              {g.items.map((item) => (
+                <StackBadge key={item} label={item} />
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 }

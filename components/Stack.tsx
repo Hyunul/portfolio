@@ -25,11 +25,20 @@ function slugFor(label: string) {
   return logoSlugs[label] ?? logoSlugs[label.replace(/\s+[\d.]+$/, "")];
 }
 
+// 공개 로고가 없는 스택은 이니셜 사각형으로 표시
+const monograms: Record<string, string> = { MyBatis: "bg-[#b3292e]", "JSP/JSTL": "bg-[#5482a1]" };
+
 export function StackBadge({ label }: { label: string }) {
   const slug = slugFor(label);
   return (
-    <span className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-800 dark:border-gray-600">
-      {slug && <img src={`/logos/${slug}.svg`} alt="" width={18} height={18} className="h-[18px] w-[18px]" />}
+    <span className="inline-flex items-center gap-2 rounded-[10px] border border-slate-200 bg-white py-2 pr-3.5 pl-3 text-sm font-medium text-slate-900 dark:border-gray-600">
+      {slug ? (
+        <img src={`/logos/${slug}.svg`} alt="" width={20} height={20} className="h-5 w-5" />
+      ) : (
+        <span className={`flex h-5 w-5 items-center justify-center rounded text-[8px] font-bold text-white ${monograms[label] ?? "bg-slate-500"}`}>
+          {label.slice(0, 2).toUpperCase()}
+        </span>
+      )}
       {label}
     </span>
   );

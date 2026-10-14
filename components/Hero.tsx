@@ -1,100 +1,63 @@
-"use client";
+import Image from "next/image";
 
-import { motion } from "framer-motion";
+const metrics = [
+  ["312개", "JSP 출력 방어를 공통 태그로 표준화"],
+  ["7 → 0건", "메인 요청당 외부 API 호출"],
+  ["3 → 1개", "통계 집계 SQL 통합"],
+  ["3회", "취약점 진단 무중단 대응"],
+];
 
-const highlights = [
-  "공공 웹 시스템 3종 2년간 개발과 운영",
-  "취약점 진단 3회 무중단 대응",
-  "외부 API 장애 격리와 스케줄러 캐시 전환",
-  "집계 쿼리 정합성 복구와 장애 당일 해결",
+export const contacts = [
+  { label: "jungwj1023@gmail.com", href: "mailto:jungwj1023@gmail.com" },
+  { label: "010-3240-6874", href: "tel:010-3240-6874" },
+  { label: "github.com/hyunul", href: "https://github.com/hyunul" },
+  { label: "hyunul.tistory.com", href: "https://hyunul.tistory.com" },
 ];
 
 export default function Hero() {
   return (
-    <section
-      id="about"
-      className="min-h-[90vh] flex flex-col justify-center items-center overflow-x-hidden relative bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.8 }}
-          className="w-full text-center z-10"
-        >
-          <span className="inline-block px-3 py-1 mb-6 text-sm font-semibold tracking-wider text-blue-600 uppercase bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-200">
-            Backend Developer
-          </span>
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight dark:text-white break-keep">
-            운영 중인 서비스를 지키면서 개선하는
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
-              백엔드 개발자 정우진
+    <section id="about" className="scroll-mt-16 bg-[#0a1221] text-white">
+      <div className="mx-auto max-w-[1120px] px-4 pt-16 pb-16 md:pt-22">
+        <div className="flex flex-col-reverse items-center gap-12 md:flex-row md:gap-16">
+          <div className="flex-1 space-y-6">
+            <span className="inline-block rounded-full bg-blue-600/20 px-3.5 py-1.5 text-[13px] font-bold text-sky-300">
+              백엔드 개발자 | Java, Spring
             </span>
-            입니다.
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed break-keep">
-            Java/Spring 기반 공공 웹 시스템을 2년간 운영하며 기능 개발과 보안 조치,
-            장애 대응을 함께 담당했습니다. 취약점 지적사항은 화면별 수정이 아니라
-            공통 함수와 인터셉터로 한 번에 반영하고, 외부 API 장애가 메인으로 번지던
-            구조를 캐시와 장애 격리로 바꾼 것처럼 원인을 제거하는 수정을 합니다.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-10 max-w-5xl mx-auto">
-            {highlights.map((highlight) => (
-              <div
-                key={highlight}
-                className="flex min-h-16 flex-wrap items-center justify-center rounded-lg border border-gray-200 bg-white/80 px-3 py-3 text-center text-[13px] font-medium leading-snug text-balance text-gray-700 shadow-sm break-keep dark:border-gray-700 dark:bg-gray-800/80 dark:text-gray-200 md:px-4 lg:text-sm"
-              >
-                {highlight}
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-6 text-gray-600 dark:text-gray-400 mb-8">
-            <div className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              <a href="mailto:jungwj1023@gmail.com" className="text-base">
-                jungwj1023@gmail.com
-              </a>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              <span className="text-base">010-3240-6874</span>
-            </div>
-            <div className="flex items-center gap-2 hover:text-black dark:hover:text-white transition-colors">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
-              <a
-                href="https://github.com/hyunul"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-base"
-              >
-                github.com/hyunul
-              </a>
-            </div>
-            <div className="flex items-center gap-2 hover:text-orange-500 transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-              <a
-                href="https://hyunul.tistory.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-base"
-              >
-                hyunul.tistory.com
-              </a>
+            <h1 className="text-4xl font-bold leading-[1.35] break-keep md:text-5xl">
+              운영 중인 서비스를 지키면서 개선하는
+              <br />
+              백엔드 개발자 정우진입니다.
+            </h1>
+            <p className="max-w-[736px] text-lg leading-relaxed text-slate-300 break-keep">
+              KISTI 국가슈퍼컴퓨팅센터 웹 시스템 3종을 2년간 개발하고 운영했습니다. 화면, 서버 로직, SQL을 함께
+              추적해 같은 문제가 다시 생기지 않는 자리를 고칩니다.
+            </p>
+            <div className="flex flex-wrap gap-x-7 gap-y-2 text-[15px] font-medium">
+              {contacts.map((c) => (
+                <a key={c.href} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="hover:text-sky-300">
+                  {c.label}
+                </a>
+              ))}
             </div>
           </div>
-        </motion.div>
+          <Image
+            src="/profile.jpg"
+            alt="정우진 프로필 사진"
+            width={260}
+            height={326}
+            priority
+            className="h-[326px] w-[260px] rounded-[20px] object-cover"
+          />
+        </div>
+
+        <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {metrics.map(([n, l]) => (
+            <div key={n} className="rounded-[14px] border border-white/12 bg-white/6 px-6 py-5">
+              <p className="text-3xl font-bold">{n}</p>
+              <p className="mt-1.5 text-sm text-slate-300 break-keep">{l}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

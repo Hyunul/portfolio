@@ -5,11 +5,12 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 
 const navItems = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#experience", label: "Experience" },
-  { href: "#cases", label: "Problem Solving" },
-  { href: "#projects", label: "Projects" },
+  { href: "#about", label: "소개" },
+  { href: "#skills", label: "기술" },
+  { href: "#experience", label: "경력" },
+  { href: "#cases", label: "문제 해결" },
+  { href: "#projects", label: "프로젝트" },
+  { href: "#contact", label: "연락처" },
 ];
 
 export default function Navbar() {
@@ -21,12 +22,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav className="sticky top-0 z-50 bg-[#0a1221]/95 backdrop-blur-md border-b border-white/10 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0 font-bold text-xl cursor-pointer text-gray-900 dark:text-white">
+          <div className="flex-shrink-0 font-bold cursor-pointer text-white text-[15px] tracking-wide">
             <Link href="/" onClick={() => setIsOpen(false)}>
-              Woojin.dev
+              JUNG WOOJIN
             </Link>
           </div>
 
@@ -36,7 +37,7 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
+                  className="text-sm font-medium text-slate-300 hover:text-white transition"
                 >
                   {item.label}
                 </Link>
@@ -46,7 +47,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors"
               aria-label="Toggle Dark Mode"
               suppressHydrationWarning
             >
@@ -65,7 +66,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white focus:outline-none"
+                className="text-white focus:outline-none"
                 aria-label="Toggle Navigation"
               >
                 {isOpen ? (

@@ -1,25 +1,24 @@
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import Skills from '@/components/Skills';
-import Timeline from '@/components/Timeline';
-import Projects from '@/components/Projects';
-import Cases from '@/components/Cases';
-import Footer from '@/components/Footer';
-import ScrollProgress from '@/components/ScrollProgress';
-import ScrollToTop from '@/components/ScrollToTop';
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Skills from "@/components/Skills";
+import Experience, { Education } from "@/components/Experience";
+import Cases from "@/components/Cases";
+import Projects from "@/components/Projects";
+import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
-    <main className="min-h-screen transition-colors duration-300 relative">
+    <main className="relative min-h-screen">
       <ScrollProgress />
       <Navbar />
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Hero />
-        <Skills />
-        <Timeline />
-        <Cases />
-        <Projects />
-      </div>
+      <Hero />
+      <Skills />
+      <Experience />
+      <Cases />
+      <Projects />
+      <Education />
       <Footer />
       <ScrollToTop />
     </main>
