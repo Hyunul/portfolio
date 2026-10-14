@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface Project {
   id: number;
@@ -12,6 +13,7 @@ interface Project {
   details: string;
   contributions: string[];
   tags: string[];
+  links?: { label: string; href: string }[];
   imageColor: string;
   imageUrl: string;
 }
@@ -19,43 +21,27 @@ interface Project {
 const projectData: Project[] = [
   {
     id: 1,
-    title: "Loslung",
+    title: "CBT Exam Platform",
+    links: [
+      { label: "서비스", href: "https://cert-cbt.site" },
+      { label: "GitHub", href: "https://github.com/Hyunul/CBT" },
+    ],
     type: "Full-stack",
-    period: "2026.03 - 2026.05",
-    description: "로스트아크 고정팀의 주간 일정 제출, 자동 확정, Discord 알림을 통합한 운영 플랫폼",
+    period: "2025.11 - 2026.10",
+    description: "자격증 기출문제를 실제 시험처럼 풀어 보는 CBT 웹 서비스 (cert-cbt.site 운영 중)",
     details:
-      "Discord와 스프레드시트로 처리하던 로스트아크 고정팀 주간 스케줄링을 웹, Discord Bot, Webhook, 캘린더로 연결한 프로젝트입니다. Next.js SSR 프론트엔드와 Spring Boot API를 분리하고 PostgreSQL, Redis Streams, Discord OAuth, Lost Ark OpenAPI 연동을 통해 그룹 생성부터 멤버 일정 제출, 팀 자동 확정, 알림 발송까지 이어지는 흐름을 구현했습니다.",
+      "정보처리기사·정보보안기사 기출을 실제 시험처럼 풀어 보는 CBT 서비스입니다. 게스트·회원 응시, 답안 자동 저장, 서버 채점, 결과 리뷰, 실기 학습 모드, 종목별 랭킹을 제공합니다. GCP VM에서 Nginx(TLS)·Spring Boot·Next.js·MySQL·Redis를 Docker Compose로 운영하고, GitHub Actions가 테스트부터 MySQL 포함 전체 스택 통합 검증, 커밋 SHA 이미지 배포까지 자동으로 진행합니다. 기출 PDF와 블로그를 파싱해 3,320문항을 적재했습니다.",
     contributions: [
-      "그룹 생성, 멤버십, 팀 편성, 좌석 배치, 주간 availability 제출 도메인 설계",
-      "Discord OAuth 전용 인증과 httpOnly access/refresh 토큰, refresh rotation grace period 적용",
-      "Discord 슬래시 명령, Webhook, @mention 알림을 연결해 일정 제출과 확정 공지 자동화",
-      "Redis Streams Consumer Group, DLQ, coalescing gate, stale-while-error 캐시로 외부 API와 비동기 작업 안정화",
-      "Lost Ark OpenAPI 캐릭터 조회와 캐릭터 refresh 비동기 처리, 공개 캐릭터 조회 기능 구현",
-      "Docker Compose, Apache reverse proxy, Flyway migration, Testcontainers 기반 통합 테스트 환경 구성",
+      "k6 부하 테스트로 시험 잠금 조회 안의 COUNT 서브쿼리를 찾아, 응시 20만 건이 쌓인 시험의 응시 시작 p95를 7.04s → 10.1ms로 단축",
+      "제출 시 채점 결과 UPDATE(답안 100개 + 응시 1개)를 JDBC 배치로 묶어 DB 왕복을 101회 → 3회로 축소",
+      "여러 탭의 동시 제출·자동 저장 충돌을 행 잠금과 고유 제약으로 직렬화하고, CI가 실제 MySQL 8에서 동시 제출 결과를 검증",
+      "JWT + Refresh Token 회전, Google·Kakao OAuth2 일회용 코드 교환으로 토큰 노출을 막고, 게스트는 응시별 비밀키로 소유권 증명",
+      "기출 교사용 PDF 파서로 문항·보기·이미지·정답을 추출하고, 정답 표시와 정답표를 대조해 필기 2,900문항 전부 일치 확인",
+      "Micrometer·Prometheus·Grafana로 엔드포인트 지연, 5xx 비율, DB 커넥션 풀, 업무 지표를 관측하고 경보 규칙 4종 운영",
     ],
-    tags: ["Java 21", "Spring Boot 3.5", "Next.js 16", "PostgreSQL", "Redis Streams", "Discord API", "Docker"],
-    imageColor: "bg-blue-200 dark:bg-blue-950",
-    imageUrl: "/loslung-architecture-thumb.svg",
-  },
-  {
-    id: 2,
-    title: "TalkTemperature",
-    type: "Frontend",
-    period: "2026.05",
-    description: "카카오톡 대화를 브라우저 안에서만 분석해 1:1 대화와 단톡방 관계 온도를 시각화하는 도구",
-    details:
-      "카카오톡 내보내기 텍스트를 입력하면 서버 저장 없이 브라우저에서만 파싱과 분석을 수행하는 Next.js App Router 앱입니다. 참여자 수를 기준으로 1:1 대화와 단톡방을 자동 감지하고, 온기, 상호성, 안정성 축을 계산해 종합 온도, 타임라인, 참여자별 지표, 페르소나와 공유 카드를 제공합니다.",
-    contributions: [
-      "Android, iOS, 일반 줄바꿈 형식의 카카오톡 대화 파서와 자동 포맷 감지 구현",
-      "온기, 상호성, 안정성 3개 축과 대화 후반 변화량을 조합한 종합 온도 산식 구현",
-      "1:1 대화와 3인 이상 단톡방을 자동 구분하고 단톡방 참여도, 응답 행렬, 언급 빈도 지표 계산",
-      "관계 유형, 본인 선택, 참여자별 라벨, 방 페르소나를 반영한 결과 화면 구성",
-      "LLM, API, DB, 인증 없이 동작하는 클라이언트 전용 분석 흐름으로 개인정보 노출면 축소",
-      "golden case 기반 회귀 테스트와 샘플 분석 스크립트로 점수와 페르소나 변화 검증",
-    ],
-    tags: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Recharts", "html-to-image", "pnpm"],
-    imageColor: "bg-emerald-200 dark:bg-emerald-950",
-    imageUrl: "/talktemperature-architecture-thumb.svg",
+    tags: ["Java 17", "Spring Boot 3.5", "Next.js 16", "MySQL 8", "Redis 7", "Nginx", "Docker", "GitHub Actions", "Prometheus"],
+    imageColor: "bg-slate-100 dark:bg-slate-900",
+    imageUrl: "/cbt-architecture.png",
   },
 ];
 
@@ -92,7 +78,11 @@ export default function Projects() {
         Projects
       </motion.h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div
+        className={`grid grid-cols-1 gap-8 ${
+          projectData.length === 1 ? "max-w-xl mx-auto" : "md:grid-cols-2"
+        }`}
+      >
         {projectData.map((project, index) => (
           <motion.div
             key={project.id}
@@ -107,14 +97,7 @@ export default function Projects() {
               onClick={() => openModal(project)}
               className={`h-48 ${project.imageColor} flex items-center justify-center cursor-pointer relative overflow-hidden w-full text-left`}
             >
-              <object
-                data={project.imageUrl}
-                type="image/svg+xml"
-                aria-label={`${project.title} architecture thumbnail`}
-                className="absolute inset-0 h-full w-full object-cover pointer-events-none group-hover:scale-105 transition-transform duration-300"
-              >
-                {project.title} architecture thumbnail
-              </object>
+              <Image src={project.imageUrl} alt={`${project.title} architecture thumbnail`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-contain pointer-events-none group-hover:scale-105 transition-transform duration-300" />
 
               <div className="absolute top-4 left-4 z-10">
                 <span
@@ -156,6 +139,21 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
+              {!!project.links?.length && (
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {project.links.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800 transition-colors hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           </motion.div>
         ))}
@@ -184,14 +182,7 @@ export default function Projects() {
             <div
               className={`h-64 ${selectedProject.imageColor} w-full flex items-center justify-center relative`}
             >
-              <object
-                data={selectedProject.imageUrl}
-                type="image/svg+xml"
-                aria-label={`${selectedProject.title} architecture thumbnail`}
-                className="absolute inset-0 h-full w-full object-cover pointer-events-none"
-              >
-                {selectedProject.title} architecture thumbnail
-              </object>
+              <Image src={selectedProject.imageUrl} alt={`${selectedProject.title} architecture thumbnail`} fill sizes="672px" className="object-contain pointer-events-none" />
               <div className="absolute inset-0 bg-black/5" />
               <div className="absolute bottom-4 left-6 z-10">
                 <span
@@ -225,6 +216,21 @@ export default function Projects() {
                   </svg>
                   {selectedProject.period}
                 </p>
+                {!!selectedProject.links?.length && (
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {selectedProject.links.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800 transition-colors hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="flex flex-wrap gap-2 mb-8">
@@ -300,14 +306,7 @@ export default function Projects() {
                 </div>
 
                 <div className={`${selectedProject.imageColor} overflow-auto p-4 md:p-6`}>
-                  <object
-                    data={selectedProject.imageUrl}
-                    type="image/svg+xml"
-                    aria-label={`${selectedProject.title} architecture detail`}
-                    className="mx-auto block aspect-video w-[1200px] min-w-[960px] max-w-none rounded-xl bg-white shadow-sm"
-                  >
-                    {selectedProject.title} architecture detail
-                  </object>
+                  <Image src={selectedProject.imageUrl} alt={`${selectedProject.title} architecture detail`} width={3840} height={2160} sizes="1200px" className="mx-auto block aspect-video w-[1200px] min-w-[960px] max-w-none rounded-xl bg-white shadow-sm" />
                 </div>
               </div>
             </div>
