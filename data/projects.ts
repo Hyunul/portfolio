@@ -125,6 +125,6 @@ export const projects: Project[] = [
       "숨은 문자·지시문 형태 문장·블라인드 채용 정보를 규칙 기반으로 점검해 프롬프트 주입 시도를 경고하고 서버에서 숨은 문자를 다시 제거",
       "평가 1회 지연 p50 18.8초·p95 27.7초, 비용 평균 $0.0023을 측정하고, 자동 테스트 123개로 라인 커버리지 98.5%·분기 92.0% 유지",
     ],
-    stack: ["TypeScript", "React 19", "Vite", "Vercel", "Supabase", "OpenAI API", "PDF.js", "GitHub Actions", "Git"],
+    stack: ["TypeScript", "React 19", "Vite", "Vercel", "Supabase", "OpenAI API","GitHub Actions", "Git"],
   },
 ];

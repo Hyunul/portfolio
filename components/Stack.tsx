@@ -19,6 +19,12 @@ const logoSlugs: Record<string, string> = {
   "GitHub Actions": "githubactions",
   Prometheus: "prometheus",
   Grafana: "grafana",
+  TypeScript: "typescript",
+  React: "react",
+  Vite: "vite",
+  Vercel: "vercel",
+  Supabase: "supabase",
+  "OpenAI API": "openai",
 };
 
 function slugFor(label: string) {
