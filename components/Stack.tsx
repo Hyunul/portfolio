@@ -25,14 +25,13 @@ const logoSlugs: Record<string, string> = {
   Vercel: "vercel",
   Supabase: "supabase",
   "OpenAI API": "openai",
+  MyBatis: "mybatis",
+  "JSP/JSTL": "jsp",
 };
 
 function slugFor(label: string) {
   return logoSlugs[label] ?? logoSlugs[label.replace(/\s+[\d.]+$/, "")];
 }
-
-// 공개 로고가 없는 스택은 이니셜 사각형으로 표시
-const monograms: Record<string, string> = { MyBatis: "bg-[#b3292e]", "JSP/JSTL": "bg-[#5482a1]" };
 
 export function StackBadge({ label }: { label: string }) {
   const slug = slugFor(label);
@@ -41,7 +40,7 @@ export function StackBadge({ label }: { label: string }) {
       {slug ? (
         <img src={`/logos/${slug}.svg`} alt="" width={20} height={20} className="h-5 w-5" />
       ) : (
-        <span className={`flex h-5 w-5 items-center justify-center rounded text-[8px] font-bold text-white ${monograms[label] ?? "bg-slate-500"}`}>
+        <span className="flex h-5 w-5 items-center justify-center rounded bg-slate-500 text-[8px] font-bold text-white">
           {label.slice(0, 2).toUpperCase()}
         </span>
       )}
