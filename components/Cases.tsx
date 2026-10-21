@@ -3,7 +3,7 @@ import Section from "./Section";
 const cases = [
   {
     title: "웹 취약점 진단 지적사항을 공통 함수로 표준화",
-    meta: "KSC, ESCORT | 2025.04 ~ 2026.08",
+    meta: "KSC, ESCORT, SOS | 2025.04 ~ 2026.08",
     problem:
       "XSS 출력 지점이 JSP 300개 이상에 흩어져 있어 화면별 수정으로는 누락과 재발을 막기 어려웠습니다. escape/sanitize 커스텀 태그를 만들고 CSRF 토큰 검증, 소유권 검증, canonical path 검증을 공통으로 적용했습니다.",
     result: "진단 3회 지적사항을 서비스 중단 없이 반영, JSP 312개 적용, 미사용 페이지 47개 삭제",
