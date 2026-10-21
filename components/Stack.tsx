@@ -30,6 +30,9 @@ const logoSlugs: Record<string, string> = {
   Python: "python",
   "discord.py": "discord",
   "Claude API": "anthropic",
+  PostgreSQL: "postgresql",
+  JDA: "discord",
+  Apache: "apache",
 };
 
 function slugFor(label: string) {

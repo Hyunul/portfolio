@@ -5,7 +5,7 @@ const groups = [
   { title: "업무에서 사용", items: ["Java 8", "Spring MVC", "MyBatis", "JSP/JSTL", "JavaScript", "jQuery", "MySQL", "Tomcat", "SVN"] },
   {
     title: "개인 프로젝트에서 사용",
-    items: ["Java 17", "Spring Boot 3.5", "Next.js 16", "MySQL 8", "Redis 7", "Nginx", "Docker", "GitHub Actions", "Prometheus", "Grafana", "Git", "TypeScript", "React", "Vite", "Vercel", "Supabase", "OpenAI API", "Python", "discord.py", "Claude API"],
+    items: ["Java 17", "Java 21", "Spring Boot 3.5", "Next.js 16", "MySQL 8", "PostgreSQL 16", "Redis 7", "Nginx", "Apache", "Docker", "GitHub Actions", "Prometheus", "Grafana", "Git", "TypeScript", "React", "Vite", "Vercel", "Supabase", "OpenAI API", "Python", "discord.py", "Claude API", "JDA"],
   },
 ];
 

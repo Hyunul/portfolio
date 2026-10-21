@@ -176,4 +176,56 @@ export const projects: Project[] = [
     ],
     stack: ["Python 3.12", "discord.py", "OpenAI API", "Claude API", "Docker", "Nginx", "GitHub Actions", "Git"],
   },
+  {
+    title: "loslung",
+    type: "Full-stack",
+    period: "2026.03 ~ 2026.10",
+    status: "배포 구성만 검증",
+    summary: "로스트아크 고정팀의 주간 일정 제출부터 자동 확정, 캘린더 반영까지 디스코드 슬래시 명령으로 처리하는 팀 운영 플랫폼",
+    description:
+      "그룹장이 디스코드와 스프레드시트로 반복하던 고정팀 주간 일정 조율을 자동화했습니다. 멤버가 /일정제출에서 버튼과 드롭다운으로 가능한 시간을 고르면, 팀 전원이 가능한 시간을 교집합으로 찾아 확정하고 웹 캘린더에 반영합니다. 매주 수요일 09:00에 다음 주 일정을 열고 금요일 23:00에 자동 확정하며, 팀 전원이 제출하면 바로 조기 확정합니다. 캐릭터 조회·가져오기, 2인 페어 주간 클리어 체크, 레이드 보상표와 계산기도 제공합니다. Spring Boot API와 JDA 봇, Next.js SSR, PostgreSQL, Redis를 Docker Compose로 묶었고, 실서비스로 운영하지 않아 Apache(TLS)와 배포 스크립트는 설계·검증용으로 남겼습니다.",
+    image: "/loslung-architecture.png",
+    links: [{ label: "GitHub 저장소", href: "https://github.com/Hyunul/loslung" }],
+    metrics: [
+      ["Redis Streams 5종", "Consumer Group과 DLQ로 나눈 비동기 처리"],
+      ["고위험 결함 8건", "결함마다 회귀 테스트를 붙여 일괄 수정"],
+      ["수 09:00 · 금 23:00", "주간 일정 자동 오픈과 자동 확정"],
+    ],
+    problems: [
+      {
+        title: "Lost Ark API 장애 때 캐시 대체값이 나오지 않던 문제",
+        problem: "Lost Ark API가 실패하면 Redis에 남은 마지막 값을 돌려주는 stale-while-error 캐시를 두었지만, 실제 장애 상황에서는 대체값 없이 오류가 그대로 나갔습니다.",
+        cause:
+          "Redis 직렬화기가 값을 JSON으로 저장했다가 원래 타입이 아닌 Map으로 읽어 왔고, 캐시는 타입이 다르면 없는 값으로 처리했습니다. 캐릭터 갱신도 점검 중 대체 응답을 받으면 빈 데이터로 DB 프로필을 덮어썼습니다.",
+        solution: "캐시에서 읽은 값을 ObjectMapper로 요청한 타입에 다시 바인딩하고, 캐릭터 갱신은 점검·stale 대체 응답이면 DB 갱신을 건너뛰게 했습니다.",
+        result: "API 장애 중에도 마지막 정상 값이 나가고 저장된 프로필이 지워지지 않으며, 두 경우 모두 회귀 테스트로 고정했습니다.",
+      },
+      {
+        title: "죽은 컨슈머가 쥔 메시지가 다시 처리되지 않던 문제",
+        problem: "컨슈머가 처리 도중 죽으면 그 메시지가 Pending 목록에 남은 채 다시 처리되지 않았습니다. 다섯 스트림 모두 같은 구조였습니다.",
+        cause:
+          "XAUTOCLAIM을 원시 명령으로 호출해 소유권만 가져오고 반환된 메시지는 버렸습니다. 처리 루프는 새 메시지(>)만 읽기 때문에, 회수한 메시지는 어디서도 처리되지 않았습니다.",
+        solution: "XPENDING으로 기준 시간 이상 방치된 메시지를 찾아 XCLAIM으로 가져온 뒤 그 자리에서 처리하게 바꿨습니다. XCLAIM이 대기 시간을 다시 검사해, 루프가 처리 중인 메시지는 가져가지 않습니다.",
+        result: "다섯 컨슈머 모두 방치된 메시지를 회수해 처리하고, 실패가 반복되면 DLQ로 넘어갑니다.",
+      },
+      {
+        title: "동시 토큰 갱신에서 로그아웃되거나 탈취 토큰이 살아 있던 문제",
+        problem: "여러 탭이 동시에 Refresh Token을 갱신하면 한쪽이 무효 토큰으로 판정돼 로그아웃됐고, 백엔드가 잠시 내려가도 사용자가 로그아웃됐습니다.",
+        cause:
+          "갱신 요청이 직렬화되지 않아 회전된 토큰을 다른 탭이 다시 쓰면 재사용 공격으로 처리됐습니다. 프런트엔드는 백엔드 장애와 무효 토큰을 구분하지 않았고, 재사용을 감지해도 이미 발급된 Access Token은 살아 있었습니다.",
+        solution:
+          "토큰 행 잠금으로 동시 갱신을 직렬화하고, 회전된 토큰은 체인이 살아 있을 때만 10초 유예 안에서 재사용을 허용했습니다. 유예 뒤 재사용은 그 토큰의 체인과 사용자의 살아 있는 Access Token까지 폐기합니다. 프런트엔드 proxy는 장애와 무효 토큰을 나눠 장애 때는 세션을 유지합니다.",
+        result: "정상 사용자의 동시 갱신은 끊기지 않고, 탈취된 토큰을 다시 쓰면 그 갱신 체인과 사용자의 모든 Access Token이 폐기됩니다.",
+      },
+    ],
+    contributions: [
+      "JDA 슬래시 명령과 버튼·드롭다운으로 타이핑 없이 주간 일정을 제출하고, 팀 전원이 가능한 시간을 교집합으로 찾아 자동 확정",
+      "일정 제출, 정기 자동 확정, 전원 제출 시 조기 확정이 모두 같은 일정 행 잠금을 잡게 해 오래된 슬롯으로 확정되는 경합 차단",
+      "Redis Streams 5종을 Consumer Group과 DLQ로 운영하고, SET NX EX 기반 병합 게이트로 같은 캐릭터 갱신의 외부 API 중복 호출 차단",
+      "Resilience4j 서킷 브레이커·분당 90회 rate limiter와 stale-while-error 캐시로 Lost Ark API 장애와 호출 제한에 대응",
+      "anon_id 쿠키, 이벤트 스트림, 매일 03:00 집계 배치로 DAU·WAU·MAU를 직접 계측",
+      "Testcontainers Redis, MockWebServer, Playwright 스모크로 검증하고 GitHub Actions가 PR마다 백엔드 빌드·테스트와 프런트 린트·빌드 실행",
+    ],
+    stack: ["Java 21", "Spring Boot 3.5", "Next.js 16", "PostgreSQL 16", "Redis 7", "JDA", "Apache", "Docker", "GitHub Actions", "Git"],
+  },
 ];
