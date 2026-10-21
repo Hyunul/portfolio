@@ -135,6 +135,7 @@ export const projects: Project[] = [
     summary: "감시 종목의 지표 신호를 디스코드로 알리고, 신호 규칙을 26년치 백테스트로 검증한 개인용 시세 감시 서버",
     description:
       "토스증권 Open API로 국내·미국 종목의 봉을 받아 이동평균 교차, RSI, 스토캐스틱, 평행선 채널 이탈 신호를 장 세션마다 1분 간격으로 검사하고 디스코드 봇으로 알립니다. 신호마다 OpenAI Decisions API로 매수·매도·관망 의견을 덧붙이고, 매일 아침 Claude API가 웹 검색으로 찾은 사건과 지수·환율·금리 데이터를 엮은 데일리 브리핑을 보냅니다. 비밀번호 로그인 대시보드에서 SSE로 실시간 지표와 차트, 지지·저항 전광판을 보며, main에 push하면 GitHub Actions가 테스트를 통과한 경우에만 GCP VM에 Docker Compose로 배포합니다. 주문 기능은 없습니다.",
+    image: "/stock-alarm-architecture.png",
     metrics: [
       ["294종목 · 26년", "일봉 백테스트로 신호 규칙 검증"],
       ["신호 4개 하향·삭제", "매수·매도 근거가 없던 규칙 정리"],
