@@ -27,6 +27,9 @@ const logoSlugs: Record<string, string> = {
   "OpenAI API": "openai",
   MyBatis: "mybatis",
   "JSP/JSTL": "jsp",
+  Python: "python",
+  "discord.py": "discord",
+  "Claude API": "anthropic",
 };
 
 function slugFor(label: string) {
